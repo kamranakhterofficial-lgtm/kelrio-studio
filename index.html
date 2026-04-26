@@ -3,187 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelrio | The Digital Studio</title>
-    <!-- Tailwind CSS -->
+    <title>Kelrio | AI Automation & Digital Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS Styles -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons (via CDN) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --navy-dark: #010413;
-            --electric-blue: #3b82f6;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .portfolio-card { transition: all 0.4s ease; border: 1px solid #eee; background: white; border-radius: 24px; overflow: hidden; }
+        .portfolio-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100;
         }
-        body {
-            background-color: var(--navy-dark);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        .font-display { font-family: 'Space Grotesk', sans-serif; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s ease;
-        }
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--electric-blue);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-        .typing-cursor::after {
-            content: "|";
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
-        .float-whatsapp {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            z-index: 999;
-            width: 64px;
-            height: 64px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transition: 0.3s;
-        }
-        .float-whatsapp:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
-    <!-- WhatsApp Icon -->
-    <a href="https://wa.me/03123112586" target="_blank" class="float-whatsapp">
-        <i data-lucide="message-circle" class="w-8 h-8 text-white fill-white"></i>
-    </a>
-
-    <!-- Nav -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-opacity-95 backdrop-blur-md" style="background-color: var(--navy-dark);">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <img src="logo.png" alt="Kelrio" class="h-14 w-auto animate-pulse">
-                <span class="hidden md:block text-2xl font-display font-bold tracking-[0.2em]">KELRIO</span>
+    <nav class="glass fixed w-full z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between h-20 items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-1 rounded-md border border-gray-200 shadow-sm">
+                    <img src="logo.png" alt="K" class="h-10 w-auto">
+                </div>
+                <span class="text-xl font-bold tracking-tighter uppercase">KELRIO</span>
             </div>
-            <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-widest text-gray-400">
-                <a href="#" class="hover:text-blue-500 text-white transition">Home</a>
-                <a href="#services" class="hover:text-blue-500 transition">Services</a>
-                <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
-                <a href="https://wa.me/03123112586" target="_blank" class="px-6 py-3 bg-blue-600 text-white hover:bg-blue-500 transition">Start Project</a>
+            <div class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                <a href="#work" class="hover:text-black">Work</a>
+                <a href="#team" class="hover:text-black">Team</a>
+                <a href="#contact" class="px-5 py-2 bg-black text-white rounded-full">Get Started</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="min-h-screen flex items-center px-6 pt-20">
-        <div class="max-w-7xl mx-auto w-full">
-            <div data-aos="fade-up">
-                <span class="inline-block px-4 py-1 bg-blue-600/10 border border-blue-600/20 text-[10px] uppercase tracking-[0.3em] text-blue-400 mb-8 font-bold">Premium Digital Design & AI</span>
-                <h1 class="text-6xl md:text-[8rem] font-display font-bold leading-none mb-10">KELRIO<br><span class="text-blue-600/20">THE STUDIO.</span></h1>
-                <p class="max-w-xl text-gray-400 text-lg mb-10">Elevating brands through high-performance design and AI infrastructure. We evolve your digital presence.</p>
-                <a href="https://wa.me/03123112586" target="_blank" class="px-10 py-5 bg-blue-600 font-bold uppercase tracking-widest text-sm inline-block hover:translate-x-2 transition shadow-xl shadow-blue-600/20">Book Session</a>
-            </div>
-        </div>
-    </section>
+    <header class="pt-48 pb-20 px-6 text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] text-blue-600 mb-4 block">AI-Powered Solutions</span>
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 italic">Kelrio Studio.</h1>
+        <p class="text-gray-500 max-w-xl mx-auto text-lg mb-12">Building the future of automation, branding, and high-end web experiences in Karachi.</p>
+    </header>
 
-    <!-- Services -->
-    <section id="services" class="py-32 px-6">
+    <section id="work" class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-7xl font-display font-bold mb-20" data-aos="fade-right">EXPERT DOMAINS.</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1 -->
-                <div class="glass-card p-10" data-aos="fade-up">
-                    <i data-lucide="palette" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">Graphic Design</h3>
-                    <p class="text-gray-400 text-sm">Visual communication that captures your brand's essence.</p>
+            <div class="mb-16 text-center md:text-left">
+                <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-gray-400 mb-2">Our Excellence</h2>
+                <h3 class="text-4xl font-bold tracking-tight uppercase">Featured Portfolio</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="portfolio-card group">
+                    <div class="aspect-square bg-gray-50 flex items-center justify-center p-8">
+                        <img src="asp-logo.png" alt="ASP Logo" class="max-h-full opacity-80 group-hover:opacity-100 transition">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg">American Screen Printing</h4>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Logo & Branding</p>
+                    </div>
                 </div>
-                <!-- 2 -->
-                <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="zap" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">Logo & Brand Identity</h3>
-                    <p class="text-gray-400 text-sm">Strategic branding and logo systems that last.</p>
+
+                <div class="portfolio-card group">
+                    <div class="aspect-square bg-gray-900 flex items-center justify-center p-8">
+                        <i class="fas fa-palette text-5xl text-gray-700"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg">Graphic Visuals</h4>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">High-End Graphics</p>
+                    </div>
                 </div>
-                <!-- 3 -->
-                <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="globe" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">Web Development</h3>
-                    <p class="text-gray-400 text-sm">Modern, blazing fast digital experiences.</p>
+
+                <div class="portfolio-card group border-blue-100">
+                    <div class="aspect-square bg-blue-50 flex items-center justify-center p-8">
+                        <span class="text-4xl font-black text-blue-600 tracking-tighter">PakGPT</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg text-blue-800">PakGPT AI</h4>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Custom LLM Solution</p>
+                    </div>
                 </div>
-                <!-- 4 -->
-                <div class="glass-card p-10" data-aos="fade-up">
-                    <i data-lucide="cpu" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">AI Automation</h3>
-                    <p class="text-gray-400 text-sm">Scaling business with intelligent automated workflows.</p>
+
+                <div class="portfolio-card group">
+                    <div class="aspect-square bg-green-50 flex items-center justify-center p-8 text-green-600">
+                        <i class="fas fa-chart-line text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg">Lead Generation</h4>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">B2B Sales Automation</p>
+                    </div>
                 </div>
-                <!-- 5 -->
-                <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="message-square" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">AI Chatbot Creator</h3>
-                    <p class="text-gray-400 text-sm">Custom LLM agents designed for intense interaction.</p>
+
+                <div class="portfolio-card group">
+                    <div class="aspect-square bg-purple-50 flex items-center justify-center p-8 text-purple-600">
+                        <i class="fas fa-robot text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg">Custom AI Agents</h4>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Business Automation</p>
+                    </div>
                 </div>
-                <!-- 6 -->
-                <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="target" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">Leads Generation</h3>
-                    <p class="text-gray-400 text-sm">Data-driven strategies to acquire high-quality traffic.</p>
+
+                <div class="portfolio-card group">
+                    <div class="aspect-square bg-gray-50 flex items-center justify-center p-8 text-black">
+                        <i class="fas fa-baseball-ball text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg">Cricket Unseen App</h4>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Mobile Application</p>
+                    </div>
                 </div>
-                <!-- 7 -->
-                <div class="glass-card p-10" data-aos="fade-up">
-                    <i data-lucide="video" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">Video Editing</h3>
-                    <p class="text-gray-400 text-sm">Professional editing for ads and cinematic content.</p>
+
+                <div class="portfolio-card group lg:col-span-3 bg-black text-white border-none">
+                    <div class="p-12 flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h4 class="text-3xl font-bold mb-2 tracking-tighter">Web Development Services</h4>
+                            <p class="text-gray-400 uppercase tracking-[0.3em] text-[10px]">We build what you dream</p>
+                        </div>
+                        <div class="mt-6 md:mt-0">
+                            <i class="fas fa-code text-5xl text-gray-700"></i>
+                        </div>
+                    </div>
                 </div>
-                <!-- 8 -->
-                <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="search" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">SEO</h3>
-                    <p class="text-gray-400 text-sm">Dominating search with data-driven optimization.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-gray-400 mb-12 text-center">Kelrio Core Team</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
+                    <p class="font-bold text-sm">Kamran Akhter</p>
+                    <p class="text-[9px] text-gray-400 uppercase mt-1">Founder / AI Lead</p>
                 </div>
-                <!-- 9 -->
-                <div class="glass-card p-10" data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="pen-tool" class="mb-8 text-blue-500"></i>
-                    <h3 class="text-lg font-bold mb-4">Content Writing</h3>
-                    <p class="text-gray-400 text-sm">Persuasive copy that transforms visitors into fans.</p>
+                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
+                    <p class="font-bold text-sm">Adeel Ahmed</p>
+                    <p class="text-[9px] text-gray-400 uppercase mt-1">Dev Ops</p>
+                </div>
+                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
+                    <p class="font-bold text-sm">Fateh Mohammad</p>
+                    <p class="text-[9px] text-gray-400 uppercase mt-1">Operations</p>
+                </div>
+                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
+                    <p class="font-bold text-sm">Jan Mohammad</p>
+                    <p class="text-[9px] text-gray-400 uppercase mt-1">Systems</p>
+                </div>
+                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
+                    <p class="font-bold text-sm">Mohammad Nawaz</p>
+                    <p class="text-[9px] text-gray-400 uppercase mt-1">Graphics</p>
+                </div>
+                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
+                    <p class="font-bold text-sm">Mohammad Atif</p>
+                    <p class="text-[9px] text-gray-400 uppercase mt-1">Marketing</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-32 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div data-aos="fade-right">
-                <h2 class="text-6xl font-display font-bold mb-10">CONNECT.</h2>
-                <div class="space-y-4">
-                    <a href="mailto:kamranakhterfficial@gmail.com" class="p-8 block glass-card hover:bg-blue-600 transition truncate">📧 kamranakhterfficial@gmail.com</a>
-                    <a href="https://wa.me/03123112586" target="_blank" class="p-8 block glass-card hover:bg-green-600 transition">📞 +92 312 311 2586</a>
-                </div>
-            </div>
-            <div class="glass-card p-10" data-aos="fade-left">
-                <form class="space-y-6">
-                    <input type="text" placeholder="IDENTITY" class="w-full bg-transparent border-b border-white/10 pb-4 outline-none focus:border-blue-500">
-                    <input type="email" placeholder="EMAIL" class="w-full bg-transparent border-b border-white/10 pb-4 outline-none focus:border-blue-500">
-                    <textarea rows="4" placeholder="HOW CAN WE HELP?" class="w-full bg-transparent border-b border-white/10 pb-4 outline-none focus:border-blue-500"></textarea>
-                    <button type="button" class="w-full py-4 bg-blue-600 font-bold uppercase">Send Protocol</button>
-                </form>
+    <div class="bg-gray-100 py-4 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center overflow-x-auto whitespace-nowrap">
+            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Admin Dashboard Preview:</span>
+            <div class="flex space-x-12">
+                <p class="text-[10px] font-bold">Growth: <span class="text-green-600">+24%</span></p>
+                <p class="text-[10px] font-bold">Active Agents: <span class="text-blue-600">07</span></p>
+                <p class="text-[10px] font-bold">Server: <span class="text-green-600 font-black">ONLINE</span></p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-        lucide.createIcons();
-    </script>
+    <footer id="contact" class="py-32 px-6 bg-white text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Have a project? <br>Let's talk.</h2>
+            <p class="text-gray-500 mb-12 text-sm italic">official Email: kamranakhterofficial@gmail.com</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="https://wa.me/923142273615" class="bg-black text-white px-10 py-5 rounded-full font-bold text-sm hover:scale-105 transition">WhatsApp Us</a>
+                <a href="mailto:kamranakhterofficial@gmail.com" class="border border-black px-10 py-5 rounded-full font-bold text-sm hover:bg-gray-50 transition">Email Now</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923142273615" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp mt-[15px]"></i>
+    </a>
+
 </body>
 </html>
