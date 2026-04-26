@@ -3,181 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelrio | AI Automation & Digital Studio</title>
+    <title>Kelrio | Premium AI & Digital Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .portfolio-card { transition: all 0.4s ease; border: 1px solid #eee; background: white; border-radius: 24px; overflow: hidden; }
-        .portfolio-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050505; 
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #fff, #8b8b8b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-nav { background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid #1a1a1a; }
+        .skill-tag { background: #111; border: 1px solid #222; padding: 8px 20px; border-radius: 50px; font-size: 12px; font-weight: bold; transition: 0.3s; }
+        .skill-tag:hover { background: #fff; color: #000; border-color: #fff; }
+        .dashboard-card { background: linear-gradient(145deg, #0a0a0a, #111); border: 1px solid #222; border-radius: 20px; }
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
             background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
-            font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100;
+            font-size: 30px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 100;
         }
     </style>
 </head>
 <body>
 
-    <nav class="glass fixed w-full z-50 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between h-20 items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-white p-1 rounded-md border border-gray-200 shadow-sm">
-                    <img src="logo.png" alt="K" class="h-10 w-auto">
-                </div>
-                <span class="text-xl font-bold tracking-tighter uppercase">KELRIO</span>
+    <nav class="glass-nav fixed w-full z-50 py-5">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="bg-white p-1 rounded-lg"><img src="logo.png" alt="K" class="h-8 w-auto"></div>
+                <span class="text-xl font-extrabold tracking-widest uppercase italic">KELRIO</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
-                <a href="#work" class="hover:text-black">Work</a>
-                <a href="#team" class="hover:text-black">Team</a>
-                <a href="#contact" class="px-5 py-2 bg-black text-white rounded-full">Get Started</a>
+            <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em]">
+                <a href="#about" class="hover:text-gray-400 transition">About</a>
+                <a href="#skills" class="hover:text-gray-400 transition">Skills</a>
+                <a href="#work" class="hover:text-gray-400 transition">Portfolio</a>
+                <a href="mailto:kamranakhterofficial@gmail.com" class="text-blue-500">Contact</a>
             </div>
         </div>
     </nav>
 
-    <header class="pt-48 pb-20 px-6 text-center">
-        <span class="text-xs font-bold uppercase tracking-[0.3em] text-blue-600 mb-4 block">AI-Powered Solutions</span>
-        <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 italic">Kelrio Studio.</h1>
-        <p class="text-gray-500 max-w-xl mx-auto text-lg mb-12">Building the future of automation, branding, and high-end web experiences in Karachi.</p>
+    <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+        <div data-aos="fade-down" class="mb-6">
+            <span class="px-4 py-2 border border-gray-800 rounded-full text-[10px] uppercase tracking-widest text-gray-400">Next-Gen Digital Agency</span>
+        </div>
+        <h1 data-aos="zoom-in" class="text-6xl md:text-9xl font-extrabold tracking-tighter gradient-text leading-none mb-8">
+            AI DRIVEN. <br> DESIGN LED.
+        </h1>
+        <p data-aos="fade-up" class="text-gray-500 max-w-2xl text-lg mb-12">
+            Professional AI Automation and Digital Experiences for the bold.
+        </p>
+        <div data-aos="fade-up" class="flex flex-wrap justify-center gap-4" id="skills">
+            <span class="skill-tag">AI CHATBOTS</span>
+            <span class="skill-tag">WEB DEVELOPMENT</span>
+            <span class="skill-tag">LEAD GENERATION</span>
+            <span class="skill-tag">GRAPHIC DESIGN</span>
+            <span class="skill-tag">AUTOMATION</span>
+        </div>
     </header>
 
-    <section id="work" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 text-center md:text-left">
-                <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-gray-400 mb-2">Our Excellence</h2>
-                <h3 class="text-4xl font-bold tracking-tight uppercase">Featured Portfolio</h3>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="portfolio-card group">
-                    <div class="aspect-square bg-gray-50 flex items-center justify-center p-8">
-                        <img src="asp-logo.png" alt="ASP Logo" class="max-h-full opacity-80 group-hover:opacity-100 transition">
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-lg">American Screen Printing</h4>
-                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Logo & Branding</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card group">
-                    <div class="aspect-square bg-gray-900 flex items-center justify-center p-8">
-                        <i class="fas fa-palette text-5xl text-gray-700"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-lg">Graphic Visuals</h4>
-                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">High-End Graphics</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card group border-blue-100">
-                    <div class="aspect-square bg-blue-50 flex items-center justify-center p-8">
-                        <span class="text-4xl font-black text-blue-600 tracking-tighter">PakGPT</span>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-lg text-blue-800">PakGPT AI</h4>
-                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Custom LLM Solution</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card group">
-                    <div class="aspect-square bg-green-50 flex items-center justify-center p-8 text-green-600">
-                        <i class="fas fa-chart-line text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-lg">Lead Generation</h4>
-                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">B2B Sales Automation</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card group">
-                    <div class="aspect-square bg-purple-50 flex items-center justify-center p-8 text-purple-600">
-                        <i class="fas fa-robot text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-lg">Custom AI Agents</h4>
-                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Business Automation</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card group">
-                    <div class="aspect-square bg-gray-50 flex items-center justify-center p-8 text-black">
-                        <i class="fas fa-baseball-ball text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-lg">Cricket Unseen App</h4>
-                        <p class="text-gray-500 text-xs uppercase tracking-widest mt-1">Mobile Application</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card group lg:col-span-3 bg-black text-white border-none">
-                    <div class="p-12 flex flex-col md:flex-row items-center justify-between">
-                        <div>
-                            <h4 class="text-3xl font-bold mb-2 tracking-tighter">Web Development Services</h4>
-                            <p class="text-gray-400 uppercase tracking-[0.3em] text-[10px]">We build what you dream</p>
-                        </div>
-                        <div class="mt-6 md:mt-0">
-                            <i class="fas fa-code text-5xl text-gray-700"></i>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <section id="about" class="py-32 px-6 border-y border-gray-900">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-xs font-bold text-blue-500 tracking-[0.5em] uppercase mb-6">Who we are</h2>
+            <p class="text-3xl md:text-5xl font-semibold leading-tight">
+                Kelrio is a Karachi-based studio helping businesses automate their growth using <span class="text-gray-500">advanced AI and minimalist human design.</span>
+            </p>
         </div>
     </section>
 
-    <section id="team" class="py-24 bg-gray-50 px-6">
+    <section class="py-24 px-6 bg-[#080808]">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-gray-400 mb-12 text-center">Kelrio Core Team</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
-                    <p class="font-bold text-sm">Kamran Akhter</p>
-                    <p class="text-[9px] text-gray-400 uppercase mt-1">Founder / AI Lead</p>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-4 italic">Why Choose Kelrio?</h3>
+                    <p class="text-gray-500">We don't just build; we solve. Our approach combines technical precision with artistic soul.</p>
                 </div>
-                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
-                    <p class="font-bold text-sm">Adeel Ahmed</p>
-                    <p class="text-[9px] text-gray-400 uppercase mt-1">Dev Ops</p>
+                <div class="space-y-8" data-aos="fade-up">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">01 / Speed</h4>
+                        <p class="text-gray-500 text-sm">Deployment of AI agents in record time.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">02 / Quality</h4>
+                        <p class="text-gray-500 text-sm">Human-designed visuals that never look like mass-produced AI.</p>
+                    </div>
                 </div>
-                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
-                    <p class="font-bold text-sm">Fateh Mohammad</p>
-                    <p class="text-[9px] text-gray-400 uppercase mt-1">Operations</p>
-                </div>
-                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
-                    <p class="font-bold text-sm">Jan Mohammad</p>
-                    <p class="text-[9px] text-gray-400 uppercase mt-1">Systems</p>
-                </div>
-                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
-                    <p class="font-bold text-sm">Mohammad Nawaz</p>
-                    <p class="text-[9px] text-gray-400 uppercase mt-1">Graphics</p>
-                </div>
-                <div class="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:border-black transition">
-                    <p class="font-bold text-sm">Mohammad Atif</p>
-                    <p class="text-[9px] text-gray-400 uppercase mt-1">Marketing</p>
+                <div class="space-y-8" data-aos="fade-left">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">03 / Reliability</h4>
+                        <p class="text-gray-500 text-sm">Direct access to the founding team for every project.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">04 / Innovation</h4>
+                        <p class="text-gray-500 text-sm">Using the latest tech stacks before they go mainstream.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="bg-gray-100 py-4 border-y border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center overflow-x-auto whitespace-nowrap">
-            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Admin Dashboard Preview:</span>
-            <div class="flex space-x-12">
-                <p class="text-[10px] font-bold">Growth: <span class="text-green-600">+24%</span></p>
-                <p class="text-[10px] font-bold">Active Agents: <span class="text-blue-600">07</span></p>
-                <p class="text-[10px] font-bold">Server: <span class="text-green-600 font-black">ONLINE</span></p>
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto dashboard-card p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 p-8 opacity-10 text-8xl font-black italic">LIVE</div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-blue-500 mb-10">Admin Control Center</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+                <div data-aos="fade-up">
+                    <p class="text-gray-600 text-[10px] uppercase mb-2">System Health</p>
+                    <p class="text-3xl font-bold text-green-500">99.9%</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-gray-600 text-[10px] uppercase mb-2">Active AI Agents</p>
+                    <p class="text-3xl font-bold italic">07 Units</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-gray-600 text-[10px] uppercase mb-2">Leads Generated</p>
+                    <p class="text-3xl font-bold">4,200+</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-gray-600 text-[10px] uppercase mb-2">Network Status</p>
+                    <div class="flex items-center space-x-2">
+                        <div class="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <p class="text-lg font-bold">SECURE</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer id="contact" class="py-32 px-6 bg-white text-center">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Have a project? <br>Let's talk.</h2>
-            <p class="text-gray-500 mb-12 text-sm italic">official Email: kamranakhterofficial@gmail.com</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="https://wa.me/923142273615" class="bg-black text-white px-10 py-5 rounded-full font-bold text-sm hover:scale-105 transition">WhatsApp Us</a>
-                <a href="mailto:kamranakhterofficial@gmail.com" class="border border-black px-10 py-5 rounded-full font-bold text-sm hover:bg-gray-50 transition">Email Now</a>
+    <section id="team" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-xs font-bold uppercase tracking-[0.4em] text-gray-600 mb-12 text-center">The Team</h2>
+            <div class="flex flex-wrap justify-center gap-6" data-aos="zoom-in">
+                <span class="px-6 py-3 border border-gray-800 rounded-full text-sm font-bold">Kamran Akhter</span>
+                <span class="px-6 py-3 border border-gray-800 rounded-full text-sm font-bold">Adeel Ahmed</span>
+                <span class="px-6 py-3 border border-gray-800 rounded-full text-sm font-bold text-gray-500">Fateh Mohammad</span>
+                <span class="px-6 py-3 border border-gray-800 rounded-full text-sm font-bold text-gray-500">Jan Mohammad</span>
+                <span class="px-6 py-3 border border-gray-800 rounded-full text-sm font-bold text-gray-500">Mohammad Nawaz</span>
+                <span class="px-6 py-3 border border-gray-800 rounded-full text-sm font-bold text-gray-500">Mohammad Atif</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-[#050505]">
+        <div class="max-w-7xl mx-auto border-t border-gray-900 pt-24">
+            <h3 class="text-center text-xs font-bold uppercase tracking-[0.4em] text-gray-600 mb-16">Global Reviews</h3>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div data-aos="fade-up">
+                    <p class="text-2xl italic mb-6">"Kelrio took our complex manual workflow and turned it into a 24/7 AI-driven machine. Extraordinary speed."</p>
+                    <p class="font-bold text-blue-500">— Tech Partner, Dubai</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-2xl italic mb-6">"The only agency that understands that AI needs to feel human. Their design aesthetic is unmatched."</p>
+                    <p class="font-bold text-blue-500">— Master Waris, Specialist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-40 px-6 text-center">
+        <div data-aos="zoom-in">
+            <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-10 italic">WORK WITH KELRIO.</h2>
+            <p class="text-gray-400 mb-12">kamranakhterofficial@gmail.com</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://wa.me/923142273615" class="bg-white text-black px-12 py-5 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-gray-200 transition">Chat on WhatsApp</a>
             </div>
         </div>
     </footer>
@@ -185,6 +178,11 @@
     <a href="https://wa.me/923142273615" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp mt-[15px]"></i>
     </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
 
 </body>
 </html>
