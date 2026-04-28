@@ -5,7 +5,7 @@
     <meta name="google-site-verification" content="RUgBgw3XJdIM3RUdko-TeWalz9WNO842xMkCmHslb1I" />
     <link rel="icon" type="image/png" href="favicon.png"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelrio | The Digital Studio - Premium AI & Design</title>
+    <title>Kelrio The Digital Studio | Premium AI & Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,151 +16,155 @@
         body { font-family: 'Outfit', sans-serif; background-color: var(--bg); color: #fff; overflow-x: hidden; }
         h1, h2, h3, .nav-logo { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Animated Background Particles Effect */
+        /* Modern Animated Mesh Background */
         .bg-animate {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #030303 100%);
-            overflow: hidden;
+            background: linear-gradient(45deg, #030303, #050a15, #030303);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
-        .bg-grid {
-            background-image: linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px; width: 100%; height: 100%;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .glow-text { background: linear-gradient(180deg, #fff 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-nav { background: rgba(3, 3, 3, 0.85); backdrop-filter: blur(25px); border-bottom: 1px solid #111; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; }
         
+        /* 24/7 Logo Animation */
+        .logo-k {
+            animation: pulse-glow 3s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+        }
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3)); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8)); }
+        }
+
         .skill-box { 
-            background: #080808; border: 1px solid #151515; border-radius: 24px; 
-            padding: 35px; transition: all 0.4s ease; 
+            background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(59, 130, 246, 0.1); 
+            padding: 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
-        .skill-box:hover { background: #111; border-color: #3b82f6; transform: translateY(-10px); }
+        .skill-box:hover { border-color: #3b82f6; transform: translateY(-10px) scale(1.02); background: rgba(59, 130, 246, 0.05); }
 
-        .portfolio-card {
-            background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 20px; overflow: hidden;
-            transition: 0.4s; position: relative; aspect-ratio: 16/10;
+        .portfolio-grid-card {
+            position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 1/1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .portfolio-card:hover { border-color: #3b82f6; }
-        .portfolio-placeholder {
-            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(45deg, #080808, #111); color: #333; font-weight: 900; font-size: 2rem;
-        }
-
+        .portfolio-grid-card img { transition: 0.5s; width: 100%; height: 100%; object-fit: cover; }
+        .portfolio-grid-card:hover img { transform: scale(1.1); filter: brightness(0.4); }
+        
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
             background: #25d366; color: #fff; border-radius: 50%; text-align: center;
             font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
             display: flex; align-items: center; justify-content: center; transition: 0.3s;
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
-
-        .hero-glow {
-            position: absolute; width: 500px; height: 500px; background: rgba(59, 130, 246, 0.1);
-            filter: blur(150px); border-radius: 50%; z-index: -1; animation: float 10s infinite alternate;
-        }
-        @keyframes float { from { transform: translate(-10%, -10%); } to { transform: translate(10%, 10%); } }
     </style>
 </head>
 <body>
 
-    <div class="bg-animate"><div class="bg-grid"></div></div>
+    <div class="bg-animate"></div>
 
-    <nav class="glass-nav fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <div class="bg-white p-1.5 rounded-xl"><img src="logo.png" alt="K" class="h-10 w-auto"></div>
-                <span class="text-3xl font-black tracking-tighter uppercase italic nav-logo">KELRIO</span>
+    <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="logo-k"><img src="logo.png" alt="K" class="h-12 w-auto"></div>
+                <span class="text-2xl font-black tracking-tighter nav-logo">KELRIO</span>
             </div>
-            <div class="hidden md:flex space-x-10 text-[11px] font-bold uppercase tracking-[0.3em]">
+            <div class="hidden md:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-widest">
                 <a href="#expertise" class="hover:text-blue-500 transition">Expertise</a>
                 <a href="#portfolio" class="hover:text-blue-500 transition">Portfolio</a>
-                <a href="#about" class="hover:text-blue-500 transition">About</a>
-                <a href="mailto:kamranakhterofficial@gmail.com" class="text-blue-500 border border-blue-500/30 px-4 py-2 rounded-lg">Email Us</a>
+                <a href="#team" class="hover:text-blue-500 transition">Team</a>
+                <a href="#apply" class="bg-blue-600 px-5 py-2 rounded-full hover:bg-blue-700 transition">Apply Now</a>
             </div>
         </div>
     </nav>
 
-    <header class="min-h-screen relative flex flex-col justify-center items-center px-6 text-center pt-20">
-        <div class="hero-glow"></div>
-        <div data-aos="fade-down" class="mb-8">
-            <span class="px-6 py-2 border border-blue-500/20 bg-blue-500/5 rounded-full text-[10px] font-bold uppercase tracking-widest text-blue-400">Karachi's Premier Digital Hub</span>
+    <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center pt-20">
+        <div data-aos="fade-up" class="mb-6 logo-k">
+            <img src="logo.png" alt="K" class="h-32 md:h-48 w-auto">
         </div>
-        <h1 data-aos="zoom-out" class="text-7xl md:text-[150px] font-black leading-none tracking-tighter glow-text mb-8">
-            KELRIO <br> STUDIO.
+        <h1 data-aos="zoom-out" class="text-6xl md:text-[120px] font-black leading-none tracking-tighter glow-text mb-6">
+            KELRIO THE <br> DIGITAL STUDIO.
         </h1>
-        <p data-aos="fade-up" class="text-gray-400 max-w-2xl text-xl font-light mb-12">
-            Elevating Brands with AI Intelligence & Precision Design.
+        <p data-aos="fade-up" class="text-gray-400 max-w-2xl text-lg md:text-xl font-light mb-10">
+            Defining the future of Digital Identity with AI-driven precision and minimalist soul.
         </p>
-        <div data-aos="fade-up" class="flex gap-4">
-            <a href="https://wa.me/923142273615" class="bg-blue-600 px-10 py-5 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-700 transition">Book a Discovery Call</a>
-        </div>
     </header>
 
     <section id="expertise" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24" data-aos="fade-up">
-                <h2 class="text-blue-500 text-xs font-bold uppercase tracking-[0.4em] mb-4">Our Services</h2>
-                <h3 class="text-5xl md:text-7xl font-bold">10 Pillars of Excellence.</h3>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-search-dollar text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">SEO Mastery</h4><p class="text-gray-500 text-sm">Rank #1 on Google with data-driven organic growth strategies.</p></div>
-                <div class="skill-box" data-aos="fade-up" data-aos-delay="50"><i class="fas fa-palette text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Graphic Design</h4><p class="text-gray-500 text-sm">Premium visuals that define your brand identity.</p></div>
-                <div class="skill-box" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-crown text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Logo Branding</h4><p class="text-gray-500 text-sm">Minimalist & impact-driven corporate logos.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-code text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Web Development</h4><p class="text-gray-500 text-sm">Ultra-fast responsive business websites.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-robot text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">AI App Building</h4><p class="text-gray-500 text-sm">Custom applications powered by Neural networks.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-comment-dots text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">AI Chatbots</h4><p class="text-gray-500 text-sm">Automated customer support 24/7.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-brain text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Custom AI Agents</h4><p class="text-gray-500 text-sm">Digital workers for your specific business logic.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-microchip text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Workflow Automation</h4><p class="text-gray-500 text-sm">Eliminate manual tasks with Python & AI script.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-video text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Video Production</h4><p class="text-gray-500 text-sm">Professional editing for high-conversion ads.</p></div>
-                <div class="skill-box" data-aos="fade-up"><i class="fas fa-bullseye text-3xl mb-6 text-blue-500"></i><h4 class="text-2xl font-bold mb-2">Lead Generation</h4><p class="text-gray-500 text-sm">B2B outreach automation to scale revenue.</p></div>
+            <h3 class="text-center text-4xl md:text-6xl font-bold mb-20" data-aos="fade-up">10 Pillars of Excellence</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-robot text-blue-500 mb-4"></i><h4 class="font-bold">AI App Building</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-palette text-blue-500 mb-4"></i><h4 class="font-bold">Graphic Design</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-crown text-blue-500 mb-4"></i><h4 class="font-bold">Logo Branding</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="250"><i class="fas fa-code text-blue-500 mb-4"></i><h4 class="font-bold">Web Dev</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-comment-dots text-blue-500 mb-4"></i><h4 class="font-bold">AI Chatbots</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="350"><i class="fas fa-brain text-blue-500 mb-4"></i><h4 class="font-bold">Custom AI Agents</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-microchip text-blue-500 mb-4"></i><h4 class="font-bold">Automation</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="450"><i class="fas fa-video text-blue-500 mb-4"></i><h4 class="font-bold">Video Production</h4></div>
+                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-bullseye text-blue-500 mb-4"></i><h4 class="font-bold">Lead Gen</h4></div>
+                <div class="skill-box glass-card border-blue-500/50" data-aos="fade-up" data-aos-delay="550"><i class="fas fa-search-dollar text-blue-400 mb-4"></i><h4 class="font-bold">SEO Mastery</h4></div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-32 bg-[#050505] px-6">
+    <section id="portfolio" class="py-32 bg-white/5 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-16">
-                <h2 class="text-blue-500 text-xs font-bold uppercase tracking-[0.4em] mb-4">Case Studies</h2>
-                <h3 class="text-5xl font-bold">The Portfolio.</h3>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="portfolio-card" data-aos="zoom-in"><div class="portfolio-placeholder">Project 01</div></div>
-                <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="100"><div class="portfolio-placeholder">Project 02</div></div>
-                <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="200"><div class="portfolio-placeholder">Project 03</div></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 px-6">
-        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-            <h2 class="text-blue-500 text-xs font-bold uppercase tracking-[0.5em] mb-8">Why Kelrio?</h2>
-            <h3 class="text-4xl md:text-6xl font-bold mb-16 italic">The Kelrio Edge.</h3>
-            <div class="grid md:grid-cols-2 gap-8 text-left">
-                <div class="p-10 border border-gray-900 rounded-3xl bg-black/50">
-                    <h4 class="text-xl font-bold mb-4 text-blue-400">Zero Mediocrity</h4>
-                    <p class="text-gray-500">We don't do templates. Every solution is custom-coded for your unique business needs.</p>
-                </div>
-                <div class="p-10 border border-gray-900 rounded-3xl bg-black/50">
-                    <h4 class="text-xl font-bold mb-4 text-blue-400">AI-First DNA</h4>
-                    <p class="text-gray-500">Built in the era of intelligence, we leverage Gemini & GPT models to automate your success.</p>
-                </div>
+            <h3 class="text-5xl font-bold mb-16">VIP Portfolio.</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 01</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 02</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 03</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 04</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 05</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 06</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 07</div></div>
+                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 08</div></div>
             </div>
         </div>
     </section>
 
-    <footer class="py-32 px-6 border-t border-gray-900 bg-black">
+    <section id="team" class="py-32 px-6">
         <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-5xl md:text-[120px] font-black glow-text mb-10">KELRIO</h2>
-            <div class="flex flex-col items-center gap-6">
-                <p class="text-gray-500 font-bold tracking-widest">KAMRANAKHTEROFFICIAL@GMAIL.COM</p>
-                <div class="flex gap-4">
-                    <a href="https://wa.me/923123112586" class="bg-white text-black px-10 py-4 rounded-xl font-bold uppercase text-[10px]">WhatsApp Us</a>
-                    <a href="mailto:kamranakhterofficial@gmail.com" class="border border-white/20 px-10 py-4 rounded-xl font-bold uppercase text-[10px]">Send Email</a>
+            <h3 class="text-4xl font-bold mb-16">The Minds Behind Kelrio</h3>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="group" data-aos="fade-up"><div class="w-24 h-24 bg-blue-600 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition">KA</div><p>Kamran Akhter</p></div>
+                <div class="group" data-aos="fade-up" data-aos-delay="100"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">AA</div><p>Adeel Ahmed</p></div>
+                <div class="group" data-aos="fade-up" data-aos-delay="200"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">FM</div><p>Fateh Mohammad</p></div>
+                <div class="group" data-aos="fade-up" data-aos-delay="300"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">MJ</div><p>Mohammad Jan</p></div>
+                <div class="group" data-aos="fade-up" data-aos-delay="400"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">MN</div><p>Mohammad Nawaz</p></div>
+                <div class="group" data-aos="fade-up" data-aos-delay="500"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">MA</div><p>Mohammad Atif</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apply" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto glass-card p-10 md:p-20">
+            <h3 class="text-3xl font-bold mb-8">Professional Dashboard</h3>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h4 class="text-blue-400 font-bold mb-4">Why Choose Kelrio?</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">We don't just build websites; we build ecosystems. Our 24/7 AI monitoring and minimalist design philosophy ensures your brand stays ahead of the curve.</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:border-blue-500">
+                    <button class="w-full bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700 transition">Apply for Design/Logo</button>
                 </div>
             </div>
-            <p class="mt-20 text-[10px] text-gray-700 uppercase tracking-widest">© 2026 Kelrio Digital Studio. All Rights Reserved.</p>
         </div>
+    </section>
+
+    <footer class="py-20 px-6 border-t border-white/10 text-center">
+        <div class="flex flex-col md:flex-row justify-center gap-10 mb-10 text-sm tracking-widest font-bold">
+            <div class="flex items-center gap-2"><i class="fas fa-phone text-blue-500"></i> +92 330 8478347</div>
+            <div class="flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> +92 312 3112586</div>
+            <div class="flex items-center gap-2"><i class="fas fa-envelope text-red-500"></i> kamranakhterofficial@gmail.com</div>
+        </div>
+        <p class="text-gray-600 text-[10px] uppercase">© 2026 KELRIO THE DIGITAL STUDIO. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <a href="https://wa.me/923123112586" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
