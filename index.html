@@ -2,22 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="RUgBgw3XJdIM3RUdko-TeWalz9WNO842xMkCmHslb1I"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="favicon.png">
-<title>Kelrio The Digital Studio | Premium AI & Design</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kelrio The Digital Studio</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Outfit:wght@300;600;900&display=swap');
-
-:root{
---accent:#3b82f6;
---bg:#030303;
-}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');
 
 *{
 margin:0;
@@ -33,8 +25,51 @@ color:#fff;
 overflow-x:hidden;
 }
 
-h1,h2,h3,.nav-logo{
-font-family:'Space Grotesk',sans-serif;
+/* ================= BACKGROUND IMAGES ================= */
+
+.bg-wrap{
+position:fixed;
+inset:0;
+z-index:-10;
+overflow:hidden;
+}
+
+.bg{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:center;
+opacity:0;
+animation:slider 28s infinite;
+transform:scale(1.15);
+}
+
+.bg:nth-child(1){
+background-image:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),url('bg1.jpg');
+animation-delay:0s;
+}
+
+.bg:nth-child(2){
+background-image:linear-gradient(rgba(0,15,35,.72),rgba(0,0,0,.72)),url('bg2.jpg');
+animation-delay:7s;
+}
+
+.bg:nth-child(3){
+background-image:linear-gradient(rgba(0,0,40,.72),rgba(0,0,0,.72)),url('bg3.jpg');
+animation-delay:14s;
+}
+
+.bg:nth-child(4){
+background-image:linear-gradient(rgba(15,0,35,.72),rgba(0,0,0,.72)),url('bg4.jpg');
+animation-delay:21s;
+}
+
+@keyframes slider{
+0%{opacity:0;transform:scale(1.15);}
+10%{opacity:1;}
+25%{opacity:1;transform:scale(1);}
+35%{opacity:0;}
+100%{opacity:0;}
 }
 
 /* ================= PRELOADER ================= */
@@ -48,154 +83,87 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-transition:1s;
 }
 
-.loader-logo{
+#loader img{
 width:120px;
-animation:zoomGlow 2s infinite alternate;
+animation:pulse 2s infinite alternate;
 }
 
-.loader-text{
+#loader h1{
 font-size:42px;
-font-weight:900;
 margin-top:20px;
-opacity:0;
-animation:welcome 3s forwards;
-animation-delay:1s;
-letter-spacing:4px;
+letter-spacing:5px;
+animation:fadeUp 2s infinite;
 }
 
-@keyframes zoomGlow{
-0%{transform:scale(.8);filter:drop-shadow(0 0 0px #3b82f6);}
-100%{transform:scale(1.1);filter:drop-shadow(0 0 30px #3b82f6);}
+@keyframes pulse{
+from{transform:scale(.9);filter:drop-shadow(0 0 0px #3b82f6);}
+to{transform:scale(1.1);filter:drop-shadow(0 0 25px #3b82f6);}
 }
 
-@keyframes welcome{
-0%{opacity:0;transform:translateY(30px);}
-100%{opacity:1;transform:translateY(0);}
+@keyframes fadeUp{
+from{opacity:.3;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-/* ================= BACKGROUND IMAGES ================= */
+/* ================= GLASS ================= */
 
-.bg-slider{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-5;
-overflow:hidden;
-}
-
-.bg-slider::after{
-content:'';
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.72);
-z-index:2;
-}
-
-.bg-slide{
-position:absolute;
-inset:0;
-background-size:cover;
-background-position:center;
-opacity:0;
-animation:slideShow 24s infinite;
-transform:scale(1.1);
-}
-
-.bg-slide:nth-child(1){background-image:url('bg1.jpg');animation-delay:0s;}
-.bg-slide:nth-child(2){background-image:url('bg2.jpg');animation-delay:6s;}
-.bg-slide:nth-child(3){background-image:url('bg3.jpg');animation-delay:12s;}
-.bg-slide:nth-child(4){background-image:url('bg4.jpg');animation-delay:18s;}
-
-@keyframes slideShow{
-0%{opacity:0;transform:scale(1.15);}
-10%{opacity:1;}
-25%{opacity:1;transform:scale(1);}
-35%{opacity:0;}
-100%{opacity:0;}
-}
-
-/* ================= TOP MARQUEE ================= */
-
-.marquee{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-z-index:999;
-background:#111;
-border-bottom:1px solid rgba(255,255,255,.08);
-overflow:hidden;
-height:34px;
-display:flex;
-align-items:center;
-}
-
-.marquee-track{
-white-space:nowrap;
-animation:marquee 18s linear infinite;
-font-size:12px;
-font-weight:800;
-letter-spacing:4px;
-text-transform:uppercase;
-color:#3b82f6;
-}
-
-@keyframes marquee{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+.glass{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+border-radius:24px;
 }
 
 /* ================= NAV ================= */
 
 nav{
-top:34px;
+backdrop-filter:blur(15px);
+background:rgba(0,0,0,.45);
 }
 
-/* ================= GLOW ================= */
+/* ================= HERO ================= */
 
-.glow-text{
-background:linear-gradient(180deg,#fff 0%,#3b82f6 100%);
+.hero-title{
+font-size:70px;
+font-weight:900;
+line-height:1;
+background:linear-gradient(180deg,#fff,#3b82f6);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-.glass-card{
-background:rgba(255,255,255,.04);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
+@media(max-width:768px){
+.hero-title{
+font-size:42px;
+}
 }
 
-/* ================= ROTATING TEXT CIRCLE ================= */
+/* ================= CIRCLE ================= */
 
-.circle-wrap{
+.circle-box{
 position:relative;
-width:180px;
-height:180px;
+width:200px;
+height:200px;
 margin:auto;
 }
 
 .circle-text{
 position:absolute;
-width:100%;
-height:100%;
-animation:spin 12s linear infinite;
+inset:0;
+animation:rotate 12s linear infinite;
 }
 
 .circle-text span{
 position:absolute;
 left:50%;
 top:0;
-transform-origin:0 90px;
+transform-origin:0 100px;
 font-size:12px;
 font-weight:700;
 letter-spacing:2px;
-color:#3b82f6;
+color:#60a5fa;
 }
 
 .center-logo{
@@ -207,120 +175,73 @@ align-items:center;
 }
 
 .center-logo img{
-width:65px;
-filter:drop-shadow(0 0 20px #3b82f6);
+width:75px;
+animation:logoGlow 2s infinite alternate;
 }
 
-@keyframes spin{
+@keyframes rotate{
 100%{transform:rotate(360deg);}
 }
 
-/* ================= SKILLS ================= */
+@keyframes logoGlow{
+from{transform:scale(.95) rotate(-8deg);filter:drop-shadow(0 0 0px #3b82f6);}
+to{transform:scale(1.1) rotate(8deg);filter:drop-shadow(0 0 25px #3b82f6);}
+}
 
-.skill-box{
+/* ================= COMMON ================= */
+
+.section-title{
+font-size:48px;
+font-weight:900;
+margin-bottom:50px;
+text-align:center;
+}
+
+.card{
 padding:30px;
 transition:.4s;
 }
 
-.skill-box:hover{
-transform:translateY(-10px) scale(1.03);
+.card:hover{
+transform:translateY(-10px);
 border-color:#3b82f6;
 }
 
-/* ================= PORTFOLIO ================= */
-
-.portfolio-card{
-height:260px;
-border-radius:24px;
-overflow:hidden;
-position:relative;
-background:#111;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.portfolio-card img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.6s;
-}
-
-.portfolio-card:hover img{
-transform:scale(1.1);
-filter:brightness(.45);
-}
-
-.placeholder{
-display:flex;
-justify-content:center;
-align-items:center;
-height:100%;
-color:#666;
+.team-name{
+transition:.4s;
 font-weight:700;
 }
 
-/* ================= TEAM ================= */
-
-.team-card{
-padding:25px;
-text-align:center;
-transition:.4s;
+.team-card:hover .team-name{
+color:#60a5fa;
+letter-spacing:1px;
+transform:translateY(-4px);
 }
 
-.team-card:hover{
-transform:translateY(-10px);
+.marquee{
+overflow:hidden;
+white-space:nowrap;
+border-top:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.08);
+padding:16px 0;
 }
 
-.team-img{
-width:110px;
-height:110px;
-border-radius:50%;
-margin:auto;
-background:#111;
-border:2px solid #3b82f6;
-display:flex;
-justify-content:center;
-align-items:center;
+.marquee-track{
+display:inline-block;
+animation:run 15s linear infinite;
 font-weight:800;
-font-size:28px;
+letter-spacing:4px;
+color:#60a5fa;
 }
 
-/* ================= DASHBOARD ================= */
-
-.stat-box{
-padding:25px;
-text-align:center;
+@keyframes run{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
-.stat-number{
-font-size:34px;
-font-weight:900;
-color:#3b82f6;
-}
-
-/* ================= WHATSAPP ================= */
-
-.whatsapp{
-position:fixed;
-right:25px;
-bottom:25px;
-width:65px;
-height:65px;
-border-radius:50%;
-background:#25d366;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:32px;
-z-index:999;
-color:#fff;
-box-shadow:0 0 20px rgba(37,211,102,.5);
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-.loader-text{font-size:28px;}
+footer i{
+margin-right:8px;
+color:#60a5fa;
 }
 </style>
 </head>
@@ -329,101 +250,132 @@ box-shadow:0 0 20px rgba(37,211,102,.5);
 
 <!-- PRELOADER -->
 <div id="loader">
-<img src="logo.png" class="loader-logo">
-<div class="loader-text">WELCOME</div>
+<img src="logo.png">
+<h1>WELCOME</h1>
 </div>
 
 <!-- BACKGROUND -->
-<div class="bg-slider">
-<div class="bg-slide"></div>
-<div class="bg-slide"></div>
-<div class="bg-slide"></div>
-<div class="bg-slide"></div>
+<div class="bg-wrap">
+<div class="bg"></div>
+<div class="bg"></div>
+<div class="bg"></div>
+<div class="bg"></div>
 </div>
 
-<!-- RUNNING HEADLINE -->
-<div class="marquee">
-<div class="marquee-track">
-KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO •
-</div>
-</div>
-
-<!-- NAV -->
-<nav class="fixed w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10">
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/10">
 <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
 
 <div class="flex items-center gap-3">
 <img src="logo.png" class="h-12">
-<span class="text-2xl font-black nav-logo">KELRIO</span>
+<h2 class="font-black text-2xl">KELRIO</h2>
 </div>
 
-<div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest">
+<div class="hidden md:flex gap-8 text-sm font-bold uppercase">
+<a href="#about">About</a>
 <a href="#skills">Skills</a>
-<a href="#portfolio">Portfolio</a>
 <a href="#team">Team</a>
-<a href="#apply" class="bg-blue-600 px-5 py-2 rounded-full">Apply</a>
+<a href="#contact">Contact</a>
 </div>
 
 </div>
 </nav>
 
 <!-- HERO -->
-<header class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32">
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24">
 
-<div class="circle-wrap mb-10">
+<div class="circle-box mb-10">
 <div class="circle-text" id="circleText"></div>
+
 <div class="center-logo">
 <img src="logo.png">
 </div>
 </div>
 
-<h1 class="text-5xl md:text-8xl font-black glow-text mb-6" data-aos="zoom-in">
-KELRIO THE DIGITAL STUDIO
+<h1 class="hero-title mb-6">
+KELRIO THE <br> DIGITAL STUDIO
 </h1>
 
-<p class="max-w-2xl text-gray-300 text-lg" data-aos="fade-up">
-Defining the future of design, branding, AI systems and digital power with premium quality.
+<p class="max-w-2xl text-gray-300 text-lg">
+Premium AI Solutions, Branding, Websites, Graphics and Professional Growth Systems.
 </p>
 
-</header>
+</section>
 
-<!-- SKILLS -->
-<section id="skills" class="py-28 px-6">
-<div class="max-w-7xl mx-auto">
-<h2 class="text-center text-5xl font-bold mb-16">10 Skills</h2>
+<!-- ABOUT -->
+<section id="about" class="py-28 px-6">
+<div class="max-w-6xl mx-auto">
+<h2 class="section-title">About Us</h2>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+<div class="grid md:grid-cols-2 gap-8">
 
-<div class="glass-card skill-box">AI App Building</div>
-<div class="glass-card skill-box">Graphic Design</div>
-<div class="glass-card skill-box">Logo Branding</div>
-<div class="glass-card skill-box">Web Development</div>
-<div class="glass-card skill-box">AI Chatbots</div>
-<div class="glass-card skill-box">Custom AI Agents</div>
-<div class="glass-card skill-box">Automation</div>
-<div class="glass-card skill-box">Video Editing</div>
-<div class="glass-card skill-box">Lead Generation</div>
-<div class="glass-card skill-box">SEO Mastery</div>
+<div class="glass card">
+<h3 class="text-2xl font-bold mb-4">Who We Are</h3>
+<p class="text-gray-300 leading-8">
+Kelrio The Digital Studio is a modern creative company providing branding,
+AI systems, websites, designs and business growth solutions worldwide.
+</p>
+</div>
+
+<div class="glass card">
+<h3 class="text-2xl font-bold mb-4">Why Choose Kelrio</h3>
+<ul class="space-y-3 text-gray-300">
+<li>✔ 24/7 Support</li>
+<li>✔ Fast Delivery</li>
+<li>✔ Premium Quality</li>
+<li>✔ Trusted Team</li>
+<li>✔ Affordable Packages</li>
+<li>✔ Modern AI Solutions</li>
+</ul>
+</div>
 
 </div>
 </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="py-28 px-6">
+<!-- REVIEWS -->
+<section class="py-28 px-6">
+<div class="max-w-6xl mx-auto">
+<h2 class="section-title">What People Say</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass card">
+⭐⭐⭐⭐⭐
+<p class="mt-4 text-gray-300">Amazing logo and website quality.</p>
+</div>
+
+<div class="glass card">
+⭐⭐⭐⭐⭐
+<p class="mt-4 text-gray-300">Professional team with fast response.</p>
+</div>
+
+<div class="glass card">
+⭐⭐⭐⭐⭐
+<p class="mt-4 text-gray-300">Highly trusted digital studio.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-28 px-6">
 <div class="max-w-7xl mx-auto">
-<h2 class="text-5xl font-bold mb-16">Portfolio</h2>
+<h2 class="section-title">10 Skills</h2>
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
 
-<div class="portfolio-card"><div class="placeholder">IMAGE 1</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 2</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 3</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 4</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 5</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 6</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 7</div></div>
-<div class="portfolio-card"><div class="placeholder">IMAGE 8</div></div>
+<div class="glass card">AI App Building</div>
+<div class="glass card">Graphic Design</div>
+<div class="glass card">Logo Branding</div>
+<div class="glass card">Web Development</div>
+<div class="glass card">AI Chatbots</div>
+<div class="glass card">Custom AI Agents</div>
+<div class="glass card">Automation</div>
+<div class="glass card">Video Editing</div>
+<div class="glass card">Lead Generation</div>
+<div class="glass card">SEO Mastery</div>
 
 </div>
 </div>
@@ -432,68 +384,60 @@ Defining the future of design, branding, AI systems and digital power with premi
 <!-- TEAM -->
 <section id="team" class="py-28 px-6">
 <div class="max-w-7xl mx-auto">
-<h2 class="text-center text-5xl font-bold mb-16">Our Team</h2>
+<h2 class="section-title">Our Team</h2>
 
 <div class="grid md:grid-cols-3 gap-8">
 
-<div class="glass-card team-card"><div class="team-img">KA</div><h3 class="mt-4">Kamran Akhter</h3></div>
-<div class="glass-card team-card"><div class="team-img">AA</div><h3 class="mt-4">Adeel Ahmed</h3></div>
-<div class="glass-card team-card"><div class="team-img">FM</div><h3 class="mt-4">Fateh Mohammad</h3></div>
-<div class="glass-card team-card"><div class="team-img">MJ</div><h3 class="mt-4">Mohammad Jan</h3></div>
-<div class="glass-card team-card"><div class="team-img">MN</div><h3 class="mt-4">Mohammad Nawaz</h3></div>
-<div class="glass-card team-card"><div class="team-img">MA</div><h3 class="mt-4">Mohammad Atif</h3></div>
-
-</div>
-</div>
-</section>
-
-<!-- DASHBOARD -->
-<section class="py-28 px-6">
-<div class="max-w-7xl mx-auto">
-<h2 class="text-5xl font-bold mb-14">Professional Dashboard</h2>
-
-<div class="grid md:grid-cols-4 gap-6">
-
-<div class="glass-card stat-box">
-<div class="stat-number">250+</div>
-<p>Projects</p>
+<div class="glass card team-card text-center">
+<img src="team1.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<h3 class="team-name">Kamran Akhter</h3>
 </div>
 
-<div class="glass-card stat-box">
-<div class="stat-number">180+</div>
-<p>Clients</p>
+<div class="glass card team-card text-center">
+<img src="team2.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<h3 class="team-name">Adeel Ahmed</h3>
 </div>
 
-<div class="glass-card stat-box">
-<div class="stat-number">24/7</div>
-<p>Support</p>
+<div class="glass card team-card text-center">
+<img src="team3.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<h3 class="team-name">Fateh Mohammad</h3>
 </div>
 
-<div class="glass-card stat-box">
-<div class="stat-number">99%</div>
-<p>Satisfaction</p>
+<div class="glass card team-card text-center">
+<img src="team4.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<h3 class="team-name">Mohammad Jan</h3>
+</div>
+
+<div class="glass card team-card text-center">
+<img src="team5.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<h3 class="team-name">Mohammad Nawaz</h3>
+</div>
+
+<div class="glass card team-card text-center">
+<img src="team6.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<h3 class="team-name">Mohammad Atif</h3>
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- APPLY -->
-<section id="apply" class="py-28 px-6">
-<div class="max-w-5xl mx-auto glass-card p-10">
+<!-- CONTACT -->
+<section id="contact" class="py-28 px-6">
+<div class="max-w-5xl mx-auto glass p-10">
 
-<h2 class="text-4xl font-bold mb-10">Give Us Your Work</h2>
+<h2 class="section-title">Give Us Your Work</h2>
 
-<div class="grid md:grid-cols-2 gap-8">
+<div class="grid md:grid-cols-2 gap-6">
 
 <input type="text" placeholder="Full Name" class="p-4 rounded-xl bg-black/30 border border-white/10">
 <input type="email" placeholder="Email" class="p-4 rounded-xl bg-black/30 border border-white/10">
 <input type="text" placeholder="Phone Number" class="p-4 rounded-xl bg-black/30 border border-white/10">
 <input type="text" placeholder="Project Type" class="p-4 rounded-xl bg-black/30 border border-white/10">
 
-<textarea rows="5" placeholder="Describe Your Work" class="md:col-span-2 p-4 rounded-xl bg-black/30 border border-white/10"></textarea>
+<textarea rows="5" placeholder="Describe Project" class="md:col-span-2 p-4 rounded-xl bg-black/30 border border-white/10"></textarea>
 
-<button class="md:col-span-2 bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700 transition">
+<button class="md:col-span-2 bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700">
 Submit Project
 </button>
 
@@ -501,41 +445,56 @@ Submit Project
 </div>
 </section>
 
+<!-- MOVING HEADLINE NOW BOTTOM -->
+<div class="marquee">
+<div class="marquee-track">
+KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO •
+</div>
+</div>
+
 <!-- FOOTER -->
-<footer class="py-20 text-center border-t border-white/10">
-<p class="mb-4">+92 330 8478347 | +92 312 3112586</p>
-<p>kamranakhterofficial@gmail.com</p>
-<p class="text-gray-500 text-sm mt-4">© 2026 Kelrio The Digital Studio</p>
+<footer class="py-16 text-center">
+
+<p class="mb-4">
+<i class="fas fa-phone"></i> +92 330 8478347
+</p>
+
+<p class="mb-4">
+<i class="fab fa-whatsapp"></i> +92 312 3112586
+</p>
+
+<p class="mb-4">
+<i class="fas fa-envelope"></i> kamranakhterofficial@gmail.com
+</p>
+
+<p class="text-gray-500 text-sm mt-6">
+© 2026 Kelrio The Digital Studio
+</p>
+
 </footer>
 
-<a href="https://wa.me/923123112586" class="whatsapp" target="_blank">
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/923123112586" target="_blank"
+class="fixed right-6 bottom-6 bg-green-500 w-16 h-16 rounded-full flex justify-center items-center text-3xl shadow-xl">
 <i class="fab fa-whatsapp"></i>
 </a>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
-AOS.init({
-duration:1200,
-once:true
-});
-
 /* PRELOADER */
-window.onload = function(){
+window.onload=function(){
 setTimeout(()=>{
-document.getElementById("loader").style.opacity="0";
-document.getElementById("loader").style.visibility="hidden";
-},4000);
-}
+document.getElementById("loader").style.display="none";
+},3500);
+};
 
-/* ROTATING TEXT */
-const text = " KELRIO THE DIGITAL STUDIO • ";
-const circle = document.getElementById("circleText");
+/* CIRCLE TEXT */
+let txt=" KELRIO THE DIGITAL STUDIO • ";
+let circle=document.getElementById("circleText");
 
-for(let i=0;i<text.length;i++){
+for(let i=0;i<txt.length;i++){
 let span=document.createElement("span");
-span.innerText=text[i];
-span.style.transform=`rotate(${i*12}deg)`;
+span.innerText=txt[i];
+span.style.transform="rotate("+(i*11)+"deg)";
 circle.appendChild(span);
 }
 </script>
