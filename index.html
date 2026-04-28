@@ -1,175 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
-    <meta name="google-site-verification" content="RUgBgw3XJdIM3RUdko-TeWalz9WNO842xMkCmHslb1I" />
-    <link rel="icon" type="image/png" href="favicon.png"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelrio The Digital Studio | Premium AI & Design</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Outfit:wght@300;600;900&display=swap');
-        
-        :root { --accent: #3b82f6; --bg: #030303; }
-        body { font-family: 'Outfit', sans-serif; background-color: var(--bg); color: #fff; overflow-x: hidden; }
-        h1, h2, h3, .nav-logo { font-family: 'Space Grotesk', sans-serif; }
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="RUgBgw3XJdIM3RUdko-TeWalz9WNO842xMkCmHslb1I"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Kelrio The Digital Studio | Premium AI & Design</title>
 
-        /* Modern Animated Mesh Background */
-        .bg-animate {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(45deg, #030303, #050a15, #030303);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-        .glow-text { background: linear-gradient(180deg, #fff 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; }
-        
-        /* 24/7 Logo Animation */
-        .logo-k {
-            animation: pulse-glow 3s infinite ease-in-out;
-            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
-        }
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8)); }
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Outfit:wght@300;600;900&display=swap');
 
-        .skill-box { 
-            background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(59, 130, 246, 0.1); 
-            padding: 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
-        .skill-box:hover { border-color: #3b82f6; transform: translateY(-10px) scale(1.02); background: rgba(59, 130, 246, 0.05); }
+:root{
+--accent:#3b82f6;
+--bg:#030303;
+}
 
-        .portfolio-grid-card {
-            position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 1/1;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .portfolio-grid-card img { transition: 0.5s; width: 100%; height: 100%; object-fit: cover; }
-        .portfolio-grid-card:hover img { transform: scale(1.1); filter: brightness(0.4); }
-        
-        .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-            background: #25d366; color: #fff; border-radius: 50%; text-align: center;
-            font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
-            display: flex; align-items: center; justify-content: center; transition: 0.3s;
-        }
-    </style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Outfit',sans-serif;
+background:#000;
+color:#fff;
+overflow-x:hidden;
+}
+
+h1,h2,h3,.nav-logo{
+font-family:'Space Grotesk',sans-serif;
+}
+
+/* ================= PRELOADER ================= */
+
+#loader{
+position:fixed;
+inset:0;
+background:#000;
+z-index:99999;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+transition:1s;
+}
+
+.loader-logo{
+width:120px;
+animation:zoomGlow 2s infinite alternate;
+}
+
+.loader-text{
+font-size:42px;
+font-weight:900;
+margin-top:20px;
+opacity:0;
+animation:welcome 3s forwards;
+animation-delay:1s;
+letter-spacing:4px;
+}
+
+@keyframes zoomGlow{
+0%{transform:scale(.8);filter:drop-shadow(0 0 0px #3b82f6);}
+100%{transform:scale(1.1);filter:drop-shadow(0 0 30px #3b82f6);}
+}
+
+@keyframes welcome{
+0%{opacity:0;transform:translateY(30px);}
+100%{opacity:1;transform:translateY(0);}
+}
+
+/* ================= BACKGROUND IMAGES ================= */
+
+.bg-slider{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-5;
+overflow:hidden;
+}
+
+.bg-slider::after{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.72);
+z-index:2;
+}
+
+.bg-slide{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:center;
+opacity:0;
+animation:slideShow 24s infinite;
+transform:scale(1.1);
+}
+
+.bg-slide:nth-child(1){background-image:url('bg1.jpg');animation-delay:0s;}
+.bg-slide:nth-child(2){background-image:url('bg2.jpg');animation-delay:6s;}
+.bg-slide:nth-child(3){background-image:url('bg3.jpg');animation-delay:12s;}
+.bg-slide:nth-child(4){background-image:url('bg4.jpg');animation-delay:18s;}
+
+@keyframes slideShow{
+0%{opacity:0;transform:scale(1.15);}
+10%{opacity:1;}
+25%{opacity:1;transform:scale(1);}
+35%{opacity:0;}
+100%{opacity:0;}
+}
+
+/* ================= TOP MARQUEE ================= */
+
+.marquee{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+background:#111;
+border-bottom:1px solid rgba(255,255,255,.08);
+overflow:hidden;
+height:34px;
+display:flex;
+align-items:center;
+}
+
+.marquee-track{
+white-space:nowrap;
+animation:marquee 18s linear infinite;
+font-size:12px;
+font-weight:800;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#3b82f6;
+}
+
+@keyframes marquee{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* ================= NAV ================= */
+
+nav{
+top:34px;
+}
+
+/* ================= GLOW ================= */
+
+.glow-text{
+background:linear-gradient(180deg,#fff 0%,#3b82f6 100%);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.glass-card{
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+}
+
+/* ================= ROTATING TEXT CIRCLE ================= */
+
+.circle-wrap{
+position:relative;
+width:180px;
+height:180px;
+margin:auto;
+}
+
+.circle-text{
+position:absolute;
+width:100%;
+height:100%;
+animation:spin 12s linear infinite;
+}
+
+.circle-text span{
+position:absolute;
+left:50%;
+top:0;
+transform-origin:0 90px;
+font-size:12px;
+font-weight:700;
+letter-spacing:2px;
+color:#3b82f6;
+}
+
+.center-logo{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.center-logo img{
+width:65px;
+filter:drop-shadow(0 0 20px #3b82f6);
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}
+
+/* ================= SKILLS ================= */
+
+.skill-box{
+padding:30px;
+transition:.4s;
+}
+
+.skill-box:hover{
+transform:translateY(-10px) scale(1.03);
+border-color:#3b82f6;
+}
+
+/* ================= PORTFOLIO ================= */
+
+.portfolio-card{
+height:260px;
+border-radius:24px;
+overflow:hidden;
+position:relative;
+background:#111;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.portfolio-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+
+.portfolio-card:hover img{
+transform:scale(1.1);
+filter:brightness(.45);
+}
+
+.placeholder{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100%;
+color:#666;
+font-weight:700;
+}
+
+/* ================= TEAM ================= */
+
+.team-card{
+padding:25px;
+text-align:center;
+transition:.4s;
+}
+
+.team-card:hover{
+transform:translateY(-10px);
+}
+
+.team-img{
+width:110px;
+height:110px;
+border-radius:50%;
+margin:auto;
+background:#111;
+border:2px solid #3b82f6;
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:800;
+font-size:28px;
+}
+
+/* ================= DASHBOARD ================= */
+
+.stat-box{
+padding:25px;
+text-align:center;
+}
+
+.stat-number{
+font-size:34px;
+font-weight:900;
+color:#3b82f6;
+}
+
+/* ================= WHATSAPP ================= */
+
+.whatsapp{
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#25d366;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+z-index:999;
+color:#fff;
+box-shadow:0 0 20px rgba(37,211,102,.5);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+.loader-text{font-size:28px;}
+}
+</style>
 </head>
+
 <body>
 
-    <div class="bg-animate"></div>
+<!-- PRELOADER -->
+<div id="loader">
+<img src="logo.png" class="loader-logo">
+<div class="loader-text">WELCOME</div>
+</div>
 
-    <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="logo-k"><img src="logo.png" alt="K" class="h-12 w-auto"></div>
-                <span class="text-2xl font-black tracking-tighter nav-logo">KELRIO</span>
-            </div>
-            <div class="hidden md:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-widest">
-                <a href="#expertise" class="hover:text-blue-500 transition">Expertise</a>
-                <a href="#portfolio" class="hover:text-blue-500 transition">Portfolio</a>
-                <a href="#team" class="hover:text-blue-500 transition">Team</a>
-                <a href="#apply" class="bg-blue-600 px-5 py-2 rounded-full hover:bg-blue-700 transition">Apply Now</a>
-            </div>
-        </div>
-    </nav>
+<!-- BACKGROUND -->
+<div class="bg-slider">
+<div class="bg-slide"></div>
+<div class="bg-slide"></div>
+<div class="bg-slide"></div>
+<div class="bg-slide"></div>
+</div>
 
-    <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center pt-20">
-        <div data-aos="fade-up" class="mb-6 logo-k">
-            <img src="logo.png" alt="K" class="h-32 md:h-48 w-auto">
-        </div>
-        <h1 data-aos="zoom-out" class="text-6xl md:text-[120px] font-black leading-none tracking-tighter glow-text mb-6">
-            KELRIO THE <br> DIGITAL STUDIO.
-        </h1>
-        <p data-aos="fade-up" class="text-gray-400 max-w-2xl text-lg md:text-xl font-light mb-10">
-            Defining the future of Digital Identity with AI-driven precision and minimalist soul.
-        </p>
-    </header>
+<!-- RUNNING HEADLINE -->
+<div class="marquee">
+<div class="marquee-track">
+KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO •
+</div>
+</div>
 
-    <section id="expertise" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h3 class="text-center text-4xl md:text-6xl font-bold mb-20" data-aos="fade-up">10 Pillars of Excellence</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-robot text-blue-500 mb-4"></i><h4 class="font-bold">AI App Building</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-palette text-blue-500 mb-4"></i><h4 class="font-bold">Graphic Design</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-crown text-blue-500 mb-4"></i><h4 class="font-bold">Logo Branding</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="250"><i class="fas fa-code text-blue-500 mb-4"></i><h4 class="font-bold">Web Dev</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-comment-dots text-blue-500 mb-4"></i><h4 class="font-bold">AI Chatbots</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="350"><i class="fas fa-brain text-blue-500 mb-4"></i><h4 class="font-bold">Custom AI Agents</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-microchip text-blue-500 mb-4"></i><h4 class="font-bold">Automation</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="450"><i class="fas fa-video text-blue-500 mb-4"></i><h4 class="font-bold">Video Production</h4></div>
-                <div class="skill-box glass-card" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-bullseye text-blue-500 mb-4"></i><h4 class="font-bold">Lead Gen</h4></div>
-                <div class="skill-box glass-card border-blue-500/50" data-aos="fade-up" data-aos-delay="550"><i class="fas fa-search-dollar text-blue-400 mb-4"></i><h4 class="font-bold">SEO Mastery</h4></div>
-            </div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav class="fixed w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10">
+<div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
 
-    <section id="portfolio" class="py-32 bg-white/5 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h3 class="text-5xl font-bold mb-16">VIP Portfolio.</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 01</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 02</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 03</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 04</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 05</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 06</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 07</div></div>
-                <div class="portfolio-grid-card" data-aos="zoom-in"><div class="flex items-center justify-center h-full bg-black/40 text-xs">WORK 08</div></div>
-            </div>
-        </div>
-    </section>
+<div class="flex items-center gap-3">
+<img src="logo.png" class="h-12">
+<span class="text-2xl font-black nav-logo">KELRIO</span>
+</div>
 
-    <section id="team" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h3 class="text-4xl font-bold mb-16">The Minds Behind Kelrio</h3>
-            <div class="flex flex-wrap justify-center gap-8">
-                <div class="group" data-aos="fade-up"><div class="w-24 h-24 bg-blue-600 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition">KA</div><p>Kamran Akhter</p></div>
-                <div class="group" data-aos="fade-up" data-aos-delay="100"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">AA</div><p>Adeel Ahmed</p></div>
-                <div class="group" data-aos="fade-up" data-aos-delay="200"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">FM</div><p>Fateh Mohammad</p></div>
-                <div class="group" data-aos="fade-up" data-aos-delay="300"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">MJ</div><p>Mohammad Jan</p></div>
-                <div class="group" data-aos="fade-up" data-aos-delay="400"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">MN</div><p>Mohammad Nawaz</p></div>
-                <div class="group" data-aos="fade-up" data-aos-delay="500"><div class="w-24 h-24 bg-gray-800 rounded-full mb-4 mx-auto flex items-center justify-center font-bold group-hover:scale-110 transition text-blue-400">MA</div><p>Mohammad Atif</p></div>
-            </div>
-        </div>
-    </section>
+<div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest">
+<a href="#skills">Skills</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#team">Team</a>
+<a href="#apply" class="bg-blue-600 px-5 py-2 rounded-full">Apply</a>
+</div>
 
-    <section id="apply" class="py-32 px-6">
-        <div class="max-w-4xl mx-auto glass-card p-10 md:p-20">
-            <h3 class="text-3xl font-bold mb-8">Professional Dashboard</h3>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div>
-                    <h4 class="text-blue-400 font-bold mb-4">Why Choose Kelrio?</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">We don't just build websites; we build ecosystems. Our 24/7 AI monitoring and minimalist design philosophy ensures your brand stays ahead of the curve.</p>
-                </div>
-                <div class="space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:border-blue-500">
-                    <button class="w-full bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700 transition">Apply for Design/Logo</button>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
+</nav>
 
-    <footer class="py-20 px-6 border-t border-white/10 text-center">
-        <div class="flex flex-col md:flex-row justify-center gap-10 mb-10 text-sm tracking-widest font-bold">
-            <div class="flex items-center gap-2"><i class="fas fa-phone text-blue-500"></i> +92 330 8478347</div>
-            <div class="flex items-center gap-2"><i class="fab fa-whatsapp text-green-500"></i> +92 312 3112586</div>
-            <div class="flex items-center gap-2"><i class="fas fa-envelope text-red-500"></i> kamranakhterofficial@gmail.com</div>
-        </div>
-        <p class="text-gray-600 text-[10px] uppercase">© 2026 KELRIO THE DIGITAL STUDIO. ALL RIGHTS RESERVED.</p>
-    </footer>
+<!-- HERO -->
+<header class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32">
 
-    <a href="https://wa.me/923123112586" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div class="circle-wrap mb-10">
+<div class="circle-text" id="circleText"></div>
+<div class="center-logo">
+<img src="logo.png">
+</div>
+</div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+<h1 class="text-5xl md:text-8xl font-black glow-text mb-6" data-aos="zoom-in">
+KELRIO THE DIGITAL STUDIO
+</h1>
+
+<p class="max-w-2xl text-gray-300 text-lg" data-aos="fade-up">
+Defining the future of design, branding, AI systems and digital power with premium quality.
+</p>
+
+</header>
+
+<!-- SKILLS -->
+<section id="skills" class="py-28 px-6">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-center text-5xl font-bold mb-16">10 Skills</h2>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+
+<div class="glass-card skill-box">AI App Building</div>
+<div class="glass-card skill-box">Graphic Design</div>
+<div class="glass-card skill-box">Logo Branding</div>
+<div class="glass-card skill-box">Web Development</div>
+<div class="glass-card skill-box">AI Chatbots</div>
+<div class="glass-card skill-box">Custom AI Agents</div>
+<div class="glass-card skill-box">Automation</div>
+<div class="glass-card skill-box">Video Editing</div>
+<div class="glass-card skill-box">Lead Generation</div>
+<div class="glass-card skill-box">SEO Mastery</div>
+
+</div>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-28 px-6">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-5xl font-bold mb-16">Portfolio</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div class="portfolio-card"><div class="placeholder">IMAGE 1</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 2</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 3</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 4</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 5</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 6</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 7</div></div>
+<div class="portfolio-card"><div class="placeholder">IMAGE 8</div></div>
+
+</div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="py-28 px-6">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-center text-5xl font-bold mb-16">Our Team</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass-card team-card"><div class="team-img">KA</div><h3 class="mt-4">Kamran Akhter</h3></div>
+<div class="glass-card team-card"><div class="team-img">AA</div><h3 class="mt-4">Adeel Ahmed</h3></div>
+<div class="glass-card team-card"><div class="team-img">FM</div><h3 class="mt-4">Fateh Mohammad</h3></div>
+<div class="glass-card team-card"><div class="team-img">MJ</div><h3 class="mt-4">Mohammad Jan</h3></div>
+<div class="glass-card team-card"><div class="team-img">MN</div><h3 class="mt-4">Mohammad Nawaz</h3></div>
+<div class="glass-card team-card"><div class="team-img">MA</div><h3 class="mt-4">Mohammad Atif</h3></div>
+
+</div>
+</div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="py-28 px-6">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-5xl font-bold mb-14">Professional Dashboard</h2>
+
+<div class="grid md:grid-cols-4 gap-6">
+
+<div class="glass-card stat-box">
+<div class="stat-number">250+</div>
+<p>Projects</p>
+</div>
+
+<div class="glass-card stat-box">
+<div class="stat-number">180+</div>
+<p>Clients</p>
+</div>
+
+<div class="glass-card stat-box">
+<div class="stat-number">24/7</div>
+<p>Support</p>
+</div>
+
+<div class="glass-card stat-box">
+<div class="stat-number">99%</div>
+<p>Satisfaction</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- APPLY -->
+<section id="apply" class="py-28 px-6">
+<div class="max-w-5xl mx-auto glass-card p-10">
+
+<h2 class="text-4xl font-bold mb-10">Give Us Your Work</h2>
+
+<div class="grid md:grid-cols-2 gap-8">
+
+<input type="text" placeholder="Full Name" class="p-4 rounded-xl bg-black/30 border border-white/10">
+<input type="email" placeholder="Email" class="p-4 rounded-xl bg-black/30 border border-white/10">
+<input type="text" placeholder="Phone Number" class="p-4 rounded-xl bg-black/30 border border-white/10">
+<input type="text" placeholder="Project Type" class="p-4 rounded-xl bg-black/30 border border-white/10">
+
+<textarea rows="5" placeholder="Describe Your Work" class="md:col-span-2 p-4 rounded-xl bg-black/30 border border-white/10"></textarea>
+
+<button class="md:col-span-2 bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700 transition">
+Submit Project
+</button>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-20 text-center border-t border-white/10">
+<p class="mb-4">+92 330 8478347 | +92 312 3112586</p>
+<p>kamranakhterofficial@gmail.com</p>
+<p class="text-gray-500 text-sm mt-4">© 2026 Kelrio The Digital Studio</p>
+</footer>
+
+<a href="https://wa.me/923123112586" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+AOS.init({
+duration:1200,
+once:true
+});
+
+/* PRELOADER */
+window.onload = function(){
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0";
+document.getElementById("loader").style.visibility="hidden";
+},4000);
+}
+
+/* ROTATING TEXT */
+const text = " KELRIO THE DIGITAL STUDIO • ";
+const circle = document.getElementById("circleText");
+
+for(let i=0;i<text.length;i++){
+let span=document.createElement("span");
+span.innerText=text[i];
+span.style.transform=`rotate(${i*12}deg)`;
+circle.appendChild(span);
+}
+</script>
+
 </body>
 </html>
