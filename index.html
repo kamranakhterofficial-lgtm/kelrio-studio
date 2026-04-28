@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kelrio The Digital Studio</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -25,7 +25,47 @@ color:#fff;
 overflow-x:hidden;
 }
 
-/* ================= BACKGROUND IMAGES ================= */
+/* ================= LOADER ================= */
+
+#loader{
+position:fixed;
+inset:0;
+background:#000;
+z-index:99999;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+transition:1s;
+}
+
+#loader img{
+width:140px;
+animation:logoAnim 2s infinite alternate;
+}
+
+#welcome{
+font-size:42px;
+font-weight:900;
+letter-spacing:6px;
+margin-top:25px;
+opacity:0;
+transform:translateY(20px);
+transition:1s;
+}
+
+@keyframes logoAnim{
+from{
+transform:scale(.9) rotate(-6deg);
+filter:drop-shadow(0 0 0px #3b82f6);
+}
+to{
+transform:scale(1.1) rotate(6deg);
+filter:drop-shadow(0 0 30px #3b82f6);
+}
+}
+
+/* ================= BACKGROUND ================= */
 
 .bg-wrap{
 position:fixed;
@@ -40,31 +80,40 @@ inset:0;
 background-size:cover;
 background-position:center;
 opacity:0;
-animation:slider 28s infinite;
-transform:scale(1.15);
+filter:blur(3px);
+transform:scale(1.12);
+animation:bgslide 28s infinite;
 }
 
 .bg:nth-child(1){
-background-image:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),url('bg1.jpg');
+background-image:
+linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),
+url('bg1.jpg');
 animation-delay:0s;
 }
 
 .bg:nth-child(2){
-background-image:linear-gradient(rgba(0,15,35,.72),rgba(0,0,0,.72)),url('bg2.jpg');
+background-image:
+linear-gradient(rgba(0,20,40,.72),rgba(0,0,0,.72)),
+url('bg2.jpg');
 animation-delay:7s;
 }
 
 .bg:nth-child(3){
-background-image:linear-gradient(rgba(0,0,40,.72),rgba(0,0,0,.72)),url('bg3.jpg');
+background-image:
+linear-gradient(rgba(10,0,45,.72),rgba(0,0,0,.72)),
+url('bg3.jpg');
 animation-delay:14s;
 }
 
 .bg:nth-child(4){
-background-image:linear-gradient(rgba(15,0,35,.72),rgba(0,0,0,.72)),url('bg4.jpg');
+background-image:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.72)),
+url('bg4.jpg');
 animation-delay:21s;
 }
 
-@keyframes slider{
+@keyframes bgslide{
 0%{opacity:0;transform:scale(1.15);}
 10%{opacity:1;}
 25%{opacity:1;transform:scale(1);}
@@ -72,61 +121,41 @@ animation-delay:21s;
 100%{opacity:0;}
 }
 
-/* ================= PRELOADER ================= */
+/* ================= NAV ================= */
 
-#loader{
-position:fixed;
-inset:0;
-background:#000;
-z-index:99999;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+nav{
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(12px);
 }
 
-#loader img{
-width:120px;
-animation:pulse 2s infinite alternate;
-}
-
-#loader h1{
-font-size:42px;
-margin-top:20px;
-letter-spacing:5px;
-animation:fadeUp 2s infinite;
-}
-
-@keyframes pulse{
-from{transform:scale(.9);filter:drop-shadow(0 0 0px #3b82f6);}
-to{transform:scale(1.1);filter:drop-shadow(0 0 25px #3b82f6);}
-}
-
-@keyframes fadeUp{
-from{opacity:.3;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* ================= GLASS ================= */
+/* ================= COMMON ================= */
 
 .glass{
 background:rgba(255,255,255,.04);
 border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
+backdrop-filter:blur(10px);
 border-radius:24px;
 }
 
-/* ================= NAV ================= */
-
-nav{
-backdrop-filter:blur(15px);
-background:rgba(0,0,0,.45);
+.section-title{
+font-size:48px;
+font-weight:900;
+text-align:center;
+margin-bottom:55px;
 }
 
-/* ================= HERO ================= */
+.card{
+padding:28px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#3b82f6;
+}
 
 .hero-title{
-font-size:70px;
+font-size:75px;
 font-weight:900;
 line-height:1;
 background:linear-gradient(180deg,#fff,#3b82f6);
@@ -135,31 +164,30 @@ background:linear-gradient(180deg,#fff,#3b82f6);
 }
 
 @media(max-width:768px){
-.hero-title{
-font-size:42px;
-}
+.hero-title{font-size:42px;}
+.section-title{font-size:34px;}
 }
 
 /* ================= CIRCLE ================= */
 
 .circle-box{
 position:relative;
-width:200px;
-height:200px;
+width:210px;
+height:210px;
 margin:auto;
 }
 
 .circle-text{
 position:absolute;
 inset:0;
-animation:rotate 12s linear infinite;
+animation:spin 12s linear infinite;
 }
 
 .circle-text span{
 position:absolute;
 left:50%;
 top:0;
-transform-origin:0 100px;
+transform-origin:0 105px;
 font-size:12px;
 font-weight:700;
 letter-spacing:2px;
@@ -175,60 +203,82 @@ align-items:center;
 }
 
 .center-logo img{
-width:75px;
-animation:logoGlow 2s infinite alternate;
+width:78px;
+animation:centerLogo 2s infinite alternate;
 }
 
-@keyframes rotate{
+@keyframes spin{
 100%{transform:rotate(360deg);}
 }
 
-@keyframes logoGlow{
-from{transform:scale(.95) rotate(-8deg);filter:drop-shadow(0 0 0px #3b82f6);}
-to{transform:scale(1.1) rotate(8deg);filter:drop-shadow(0 0 25px #3b82f6);}
+@keyframes centerLogo{
+from{
+transform:scale(.95) rotate(-8deg);
+filter:drop-shadow(0 0 0px #3b82f6);
+}
+to{
+transform:scale(1.12) rotate(8deg);
+filter:drop-shadow(0 0 25px #3b82f6);
+}
 }
 
-/* ================= COMMON ================= */
+/* ================= PORTFOLIO ================= */
 
-.section-title{
-font-size:48px;
-font-weight:900;
-margin-bottom:50px;
-text-align:center;
+.portfolio{
+height:260px;
+border-radius:22px;
+overflow:hidden;
+position:relative;
+border:1px solid rgba(255,255,255,.08);
 }
 
-.card{
-padding:30px;
-transition:.4s;
+.portfolio img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
 }
 
-.card:hover{
-transform:translateY(-10px);
-border-color:#3b82f6;
+.portfolio:hover img{
+transform:scale(1.1);
+filter:brightness(.55);
+}
+
+/* ================= TEAM ================= */
+
+.team-card img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+margin:auto;
+margin-bottom:18px;
+border:2px solid #3b82f6;
 }
 
 .team-name{
-transition:.4s;
 font-weight:700;
+transition:.4s;
 }
 
 .team-card:hover .team-name{
 color:#60a5fa;
-letter-spacing:1px;
-transform:translateY(-4px);
+transform:translateY(-5px);
 }
+
+/* ================= MARQUEE ================= */
 
 .marquee{
 overflow:hidden;
 white-space:nowrap;
+padding:16px 0;
 border-top:1px solid rgba(255,255,255,.08);
 border-bottom:1px solid rgba(255,255,255,.08);
-padding:16px 0;
 }
 
 .marquee-track{
 display:inline-block;
-animation:run 15s linear infinite;
+animation:run 16s linear infinite;
 font-weight:800;
 letter-spacing:4px;
 color:#60a5fa;
@@ -248,10 +298,10 @@ color:#60a5fa;
 
 <body>
 
-<!-- PRELOADER -->
+<!-- LOADER -->
 <div id="loader">
 <img src="logo.png">
-<h1>WELCOME</h1>
+<h1 id="welcome">WELCOME</h1>
 </div>
 
 <!-- BACKGROUND -->
@@ -262,7 +312,7 @@ color:#60a5fa;
 <div class="bg"></div>
 </div>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav class="fixed top-0 w-full z-50 border-b border-white/10">
 <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
 
@@ -272,8 +322,8 @@ color:#60a5fa;
 </div>
 
 <div class="hidden md:flex gap-8 text-sm font-bold uppercase">
-<a href="#about">About</a>
 <a href="#skills">Skills</a>
+<a href="#portfolio">Portfolio</a>
 <a href="#team">Team</a>
 <a href="#contact">Contact</a>
 </div>
@@ -286,7 +336,6 @@ color:#60a5fa;
 
 <div class="circle-box mb-10">
 <div class="circle-text" id="circleText"></div>
-
 <div class="center-logo">
 <img src="logo.png">
 </div>
@@ -300,63 +349,6 @@ KELRIO THE <br> DIGITAL STUDIO
 Premium AI Solutions, Branding, Websites, Graphics and Professional Growth Systems.
 </p>
 
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="py-28 px-6">
-<div class="max-w-6xl mx-auto">
-<h2 class="section-title">About Us</h2>
-
-<div class="grid md:grid-cols-2 gap-8">
-
-<div class="glass card">
-<h3 class="text-2xl font-bold mb-4">Who We Are</h3>
-<p class="text-gray-300 leading-8">
-Kelrio The Digital Studio is a modern creative company providing branding,
-AI systems, websites, designs and business growth solutions worldwide.
-</p>
-</div>
-
-<div class="glass card">
-<h3 class="text-2xl font-bold mb-4">Why Choose Kelrio</h3>
-<ul class="space-y-3 text-gray-300">
-<li>✔ 24/7 Support</li>
-<li>✔ Fast Delivery</li>
-<li>✔ Premium Quality</li>
-<li>✔ Trusted Team</li>
-<li>✔ Affordable Packages</li>
-<li>✔ Modern AI Solutions</li>
-</ul>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- REVIEWS -->
-<section class="py-28 px-6">
-<div class="max-w-6xl mx-auto">
-<h2 class="section-title">What People Say</h2>
-
-<div class="grid md:grid-cols-3 gap-8">
-
-<div class="glass card">
-⭐⭐⭐⭐⭐
-<p class="mt-4 text-gray-300">Amazing logo and website quality.</p>
-</div>
-
-<div class="glass card">
-⭐⭐⭐⭐⭐
-<p class="mt-4 text-gray-300">Professional team with fast response.</p>
-</div>
-
-<div class="glass card">
-⭐⭐⭐⭐⭐
-<p class="mt-4 text-gray-300">Highly trusted digital studio.</p>
-</div>
-
-</div>
-</div>
 </section>
 
 <!-- SKILLS -->
@@ -381,41 +373,128 @@ AI systems, websites, designs and business growth solutions worldwide.
 </div>
 </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-28 px-6">
+<div class="max-w-7xl mx-auto">
+
+<h2 class="section-title">Portfolio</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div class="portfolio"><img src="p1.jpg"></div>
+<div class="portfolio"><img src="p2.jpg"></div>
+<div class="portfolio"><img src="p3.jpg"></div>
+<div class="portfolio"><img src="p4.jpg"></div>
+<div class="portfolio"><img src="p5.jpg"></div>
+<div class="portfolio"><img src="p6.jpg"></div>
+<div class="portfolio"><img src="p7.jpg"></div>
+<div class="portfolio"><img src="p8.jpg"></div>
+
+</div>
+</div>
+</section>
+
 <!-- TEAM -->
 <section id="team" class="py-28 px-6">
 <div class="max-w-7xl mx-auto">
+
 <h2 class="section-title">Our Team</h2>
 
 <div class="grid md:grid-cols-3 gap-8">
 
 <div class="glass card team-card text-center">
-<img src="team1.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<img src="team1.jpg">
 <h3 class="team-name">Kamran Akhter</h3>
 </div>
 
 <div class="glass card team-card text-center">
-<img src="team2.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<img src="team2.jpg">
 <h3 class="team-name">Adeel Ahmed</h3>
 </div>
 
 <div class="glass card team-card text-center">
-<img src="team3.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<img src="team3.jpg">
 <h3 class="team-name">Fateh Mohammad</h3>
 </div>
 
 <div class="glass card team-card text-center">
-<img src="team4.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<img src="team4.jpg">
 <h3 class="team-name">Mohammad Jan</h3>
 </div>
 
 <div class="glass card team-card text-center">
-<img src="team5.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<img src="team5.jpg">
 <h3 class="team-name">Mohammad Nawaz</h3>
 </div>
 
 <div class="glass card team-card text-center">
-<img src="team6.jpg" class="w-28 h-28 rounded-full mx-auto mb-4 object-cover">
+<img src="team6.jpg">
 <h3 class="team-name">Mohammad Atif</h3>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="py-28 px-6">
+<div class="max-w-6xl mx-auto">
+
+<h2 class="section-title">About Us</h2>
+
+<div class="grid md:grid-cols-2 gap-8">
+
+<div class="glass card">
+<h3 class="text-2xl font-bold mb-4">Who We Are</h3>
+<p class="text-gray-300 leading-8">
+Kelrio The Digital Studio is a premium digital company providing
+branding, websites, AI systems, graphics and business growth solutions worldwide.
+</p>
+</div>
+
+<div class="glass card">
+<h3 class="text-2xl font-bold mb-4">Why Choose Kelrio</h3>
+<ul class="space-y-3 text-gray-300">
+<li>✔ 24/7 Support</li>
+<li>✔ Fast Delivery</li>
+<li>✔ Premium Quality</li>
+<li>✔ Trusted Team</li>
+<li>✔ Modern AI Solutions</li>
+<li>✔ Affordable Pricing</li>
+</ul>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PEOPLE SAY -->
+<section class="py-28 px-6">
+<div class="max-w-6xl mx-auto">
+
+<h2 class="section-title">What People Say</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass card">
+⭐⭐⭐⭐⭐
+<p class="mt-4 text-gray-300">
+Amazing quality and professional team.
+</p>
+</div>
+
+<div class="glass card">
+⭐⭐⭐⭐⭐
+<p class="mt-4 text-gray-300">
+Fast delivery and premium results.
+</p>
+</div>
+
+<div class="glass card">
+⭐⭐⭐⭐⭐
+<p class="mt-4 text-gray-300">
+Highly trusted digital studio.
+</p>
 </div>
 
 </div>
@@ -435,7 +514,8 @@ AI systems, websites, designs and business growth solutions worldwide.
 <input type="text" placeholder="Phone Number" class="p-4 rounded-xl bg-black/30 border border-white/10">
 <input type="text" placeholder="Project Type" class="p-4 rounded-xl bg-black/30 border border-white/10">
 
-<textarea rows="5" placeholder="Describe Project" class="md:col-span-2 p-4 rounded-xl bg-black/30 border border-white/10"></textarea>
+<textarea rows="5" placeholder="Describe Project"
+class="md:col-span-2 p-4 rounded-xl bg-black/30 border border-white/10"></textarea>
 
 <button class="md:col-span-2 bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700">
 Submit Project
@@ -445,7 +525,7 @@ Submit Project
 </div>
 </section>
 
-<!-- MOVING HEADLINE NOW BOTTOM -->
+<!-- MOVING HEADLINE -->
 <div class="marquee">
 <div class="marquee-track">
 KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO •
@@ -473,18 +553,31 @@ KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL S
 
 </footer>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/923123112586" target="_blank"
+<!-- FLOAT WHATSAPP -->
+<a href="https://wa.me/923123112586"
+target="_blank"
 class="fixed right-6 bottom-6 bg-green-500 w-16 h-16 rounded-full flex justify-center items-center text-3xl shadow-xl">
 <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-/* PRELOADER */
+
+/* LOADER */
 window.onload=function(){
+
+setTimeout(()=>{
+document.getElementById("welcome").style.opacity="1";
+document.getElementById("welcome").style.transform="translateY(0)";
+},1800);
+
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0";
+},3600);
+
 setTimeout(()=>{
 document.getElementById("loader").style.display="none";
-},3500);
+},4300);
+
 };
 
 /* CIRCLE TEXT */
@@ -497,6 +590,7 @@ span.innerText=txt[i];
 span.style.transform="rotate("+(i*11)+"deg)";
 circle.appendChild(span);
 }
+
 </script>
 
 </body>
