@@ -1,448 +1,718 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="google-site-verification" content="RUgBgw3XJdIM3RUdko-TeWalz9WNO842xMkCmHslb1I" />
-    <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelrio The Digital Studio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* ================= LOADER (Enhanced) ================= */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        #loader img {
-            width: 150px;
-            animation: logoPulse 1.8s infinite ease-in-out;
-        }
-
-        #welcome {
-            font-size: 42px;
-            font-weight: 900;
-            letter-spacing: 8px;
-            margin-top: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 1.2s;
-            background: linear-gradient(90deg, #3b82f6, #ffffff, #3b82f6);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 10px #3b82f6); }
-            50% { transform: scale(1.2) rotate(5deg); filter: drop-shadow(0 0 40px #3b82f6); }
-        }
-
-        @keyframes shine { to { background-position: 200% center; } }
-
-        /* ================= BACKGROUND ================= */
-        .bg-wrap {
-            position: fixed;
-            inset: 0;
-            z-index: -10;
-            overflow: hidden;
-        }
-
-        .bg {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center top;
-            opacity: 0;
-            filter: blur(3px);
-            transform: scale(1.1);
-            animation: bgslide 28s infinite;
-            max-height: 100vh;
-        }
-
-        .bg:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.88)), url('bg1.png'); animation-delay: 0s; }
-        .bg:nth-child(2) { background-image: linear-gradient(rgba(0,10,30,.88),rgba(0,0,0,.88)), url('bg2.jpg'); animation-delay: 7s; }
-        .bg:nth-child(3) { background-image: linear-gradient(rgba(5,0,30,.88),rgba(0,0,0,.88)), url('bg3.png'); animation-delay: 14s; }
-        .bg:nth-child(4) { background-image: linear-gradient(rgba(0,0,0,.90),rgba(0,0,0,.88)), url('bg4.png'); animation-delay: 21s; }
-
-        @keyframes bgslide {
-            0%, 100% { opacity: 0; transform: scale(1.05); }
-            10%, 25% { opacity: 1; transform: scale(1.15); }
-            35% { opacity: 0; }
-        }
-
-        /* ================= NAV (Updated) ================= */
-        nav {
-            background: rgba(0,0,0,.5);
-            backdrop-filter: blur(15px);
-        }
-
-        .nav-logo-box {
-            background: rgba(255,255,255,0.85); /* Not too bright white */
-            border-radius: 12px;
-            padding: 6px;
-            box-shadow: 0 0 15px rgba(59,130,246,0.3);
-            animation: navLogoSpin 4s infinite linear;
-        }
-
-        @keyframes navLogoSpin {
-            0% { transform: perspective(500px) rotateY(0deg); }
-            50% { transform: perspective(500px) rotateY(180deg); }
-            100% { transform: perspective(500px) rotateY(360deg); }
-        }
-
-        .kelrio-blue {
-            color: #1e3a8a; /* Dark Blue */
-            font-weight: 900;
-        }
-
-        /* ================= HERO & CIRCLE (Large 'K') ================= */
-        .circle-box {
-            position: relative;
-            width: 260px; /* Bada Size */
-            height: 260px;
-            margin: auto;
-        }
-
-        .circle-text {
-            position: absolute;
-            inset: 0;
-            animation: spin 12s linear infinite;
-        }
-
-        .circle-text span {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform-origin: 0 130px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            color: #60a5fa;
-        }
-
-        .center-logo {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .center-logo img {
-            width: 125px; /* 'K' Bada ho gaya */
-            animation: centerLogoFloating 3s infinite alternate ease-in-out;
-            background: rgba(255,255,255,0.88); /* Soft White */
-            border-radius: 50%;
-            padding: 15px;
-            box-shadow: 0 0 35px rgba(59,130,246,0.6);
-        }
-
-        @keyframes centerLogoFloating {
-            from { transform: scale(0.95) rotate(-8deg); }
-            to { transform: scale(1.15) rotate(8deg); }
-        }
-
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .hero-title {
-            font-size: clamp(38px, 10vw, 80px);
-            font-weight: 900;
-            line-height: 1;
-            background: linear-gradient(160deg,#ffffff 0%,#93c5fd 50%,#3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 20px rgba(59,130,246,0.4));
-            animation: heroFadeUp 1.5s ease-out;
-        }
-
-        @keyframes heroFadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ================= CARDS & EXTRA ANIMATIONS ================= */
-        .glass {
-            background: rgba(255,255,255,.04);
-            border: 1px solid rgba(255,255,255,.08);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-        }
-
-        .card-anim {
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card-anim:hover {
-            transform: translateY(-15px) scale(1.05) rotate(1deg);
-            border-color: #3b82f6;
-            box-shadow: 0 20px 40px rgba(59,130,246,0.2);
-        }
-
-        /* Skill Icon Animation */
-        .skill-icon { font-size: 32px; transition: 0.4s; display: block; }
-        .card-anim:hover .skill-icon { transform: scale(1.3) rotate(-10deg); }
-
-        /* Portfolio Image Zoom */
-        .portfolio-box {
-            border-radius: 22px;
-            overflow: hidden;
-            position: relative;
-            height: 280px;
-        }
-        .portfolio-box img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: 0.8s ease;
-        }
-        .portfolio-box:hover img { transform: scale(1.2); filter: brightness(0.5); }
-
-        /* ================= REVEAL ON SCROLL ================= */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ================= MARQUEE ================= */
-        .marquee {
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 20px 0;
-            border-top: 1px solid rgba(59,130,246,0.2);
-            border-bottom: 1px solid rgba(59,130,246,0.2);
-            background: rgba(59,130,246,0.02);
-        }
-
-        .marquee-track {
-            display: inline-block;
-            animation: run 18s linear infinite;
-            font-weight: 900;
-            letter-spacing: 5px;
-            color: #3b82f6;
-            font-size: 1.2rem;
-        }
-
-        @keyframes run { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    </style>
-</head>
-<body>
-
-    <!-- LOADER -->
-    <div id="loader">
-        <img src="logo.png" alt="Kelrio Logo">
-        <h1 id="welcome">KELRIO THE STUDIO</h1>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="google-site-verification" content="RUgBgw3XJdIM3RUdko-TeWalz9WNO842xMkCmHslb1I" />
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Kelrio The Digital Studio</title>  <script src="https://cdn.tailwindcss.com"></script>  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>  
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');  
+  
+*{  
+margin:0;  
+padding:0;  
+box-sizing:border-box;  
+scroll-behavior:smooth;  
+}  
+  
+body{  
+font-family:'Outfit',sans-serif;  
+background:#000;  
+color:#fff;  
+overflow-x:hidden;  
+}  
+  
+/* ================= LOADER ================= */  
+  
+#loader{  
+position:fixed;  
+inset:0;  
+background:#000;  
+z-index:99999;  
+display:flex;  
+justify-content:center;  
+align-items:center;  
+flex-direction:column;  
+transition:1s;  
+}  
+  
+#loader img{  
+width:140px;  
+animation:logoAnim 2s infinite alternate;  
+}  
+  
+#welcome{  
+font-size:42px;  
+font-weight:900;  
+letter-spacing:6px;  
+margin-top:25px;  
+opacity:0;  
+transform:translateY(20px);  
+transition:1s;  
+}  
+  
+@keyframes logoAnim{  
+from{  
+transform:scale(.9) rotate(-6deg);  
+filter:drop-shadow(0 0 0px #3b82f6);  
+}  
+to{  
+transform:scale(1.1) rotate(6deg);  
+filter:drop-shadow(0 0 30px #3b82f6);  
+}  
+}  
+  
+/* ================= BACKGROUND ================= */  
+  
+.bg-wrap{  
+position:fixed;  
+inset:0;  
+z-index:-10;  
+overflow:hidden;  
+}  
+  
+.bg{  
+position:absolute;  
+inset:0;  
+background-size:cover;  
+background-position:center top;  
+opacity:0;  
+filter:blur(3px);  
+transform:scale(1.12);  
+animation:bgslide 28s infinite;  
+max-height:100vh;
+}  
+  
+.bg:nth-child(1){  
+background-image:  
+linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.88)),  
+url('bg1.png');  
+animation-delay:0s;  
+}  
+  
+.bg:nth-child(2){  
+background-image:  
+linear-gradient(rgba(0,10,30,.88),rgba(0,0,0,.88)),  
+url('bg2.jpg');  
+animation-delay:7s;  
+}  
+  
+.bg:nth-child(3){  
+background-image:  
+linear-gradient(rgba(5,0,30,.88),rgba(0,0,0,.88)),  
+url('bg3.png');  
+animation-delay:14s;  
+}  
+  
+.bg:nth-child(4){  
+background-image:  
+linear-gradient(rgba(0,0,0,.90),rgba(0,0,0,.88)),  
+url('bg4.png');  
+animation-delay:21s;  
+}  
+  
+@keyframes bgslide{  
+0%{  
+opacity:0;  
+transform:scale(1.05);  
+}  
+  
+10%{  
+opacity:1;  
+transform:scale(1.08);  
+}  
+  
+25%{  
+opacity:1;  
+transform:scale(1.1);  
+}  
+  
+35%{  
+opacity:0;  
+transform:scale(1.05);  
+}  
+  
+100%{  
+opacity:0;  
+}  
+}  
+  
+/* ================= NAV ================= */  
+  
+<div class="flex items-center gap-4">
+    <!-- Animated Logo Box -->
+    <div style="background: rgba(255,255,255,0.85); border-radius: 12px; padding: 6px; box-shadow: 0 0 15px rgba(59,130,246,0.3); animation: navLogoSpin 4s infinite linear;">
+        <img src="logo.png" class="h-10">
     </div>
+    <!-- Dark Blue Text -->
+    <h2 style="color: #1e3a8a; font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px;">KELRIO</h2>
+</div>
 
-    <!-- BACKGROUND SLIDESHOW -->
-    <div class="bg-wrap">
-        <div class="bg"></div><div class="bg"></div><div class="bg"></div><div class="bg"></div>
+<!-- Is animation ko CSS section me add karein -->
+<style>
+@keyframes navLogoSpin {
+    0% { transform: perspective(500px) rotateY(0deg); }
+    50% { transform: perspective(500px) rotateY(180deg); }
+    100% { transform: perspective(500px) rotateY(360deg); }
+}
+</style> 
+  
+/* ================= COMMON ================= */  
+  
+.glass{  
+background:rgba(255,255,255,.04);  
+border:1px solid rgba(255,255,255,.08);  
+backdrop-filter:blur(10px);  
+border-radius:24px;  
+}  
+  
+.section-title{  
+font-size:48px;  
+font-weight:900;  
+text-align:center;  
+margin-bottom:55px;  
+}  
+  
+.card{  
+padding:28px;  
+transition:.4s;  
+}  
+  
+.card:hover{  
+transform:translateY(-10px);  
+border-color:#3b82f6;  
+}  
+  
+.hero-title{  
+font-size:75px;  
+font-weight:900;  
+line-height:1;  
+background:linear-gradient(160deg,#ffffff 0%,#93c5fd 50%,#3b82f6 100%);  
+-webkit-background-clip:text;  
+-webkit-text-fill-color:transparent;
+filter:drop-shadow(0 2px 18px rgba(59,130,246,0.5));
+}  
+  
+@media(max-width:768px){  
+.hero-title{font-size:42px;}  
+.section-title{font-size:34px;}  
+}  
+  
+/* ================= CIRCLE ================= */  
+  
+<div class="circle-box" style="position: relative; width: 260px; height: 260px; margin: auto; margin-bottom: 3rem;">
+    <!-- Rotating Text -->
+    <div class="circle-text" id="circleText" style="position: absolute; inset: 0; animation: spin 12s linear infinite;"></div>
+    
+    <!-- Large Center Logo -->
+    <div class="center-logo" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: center;">
+        <img src="logo.png" style="width: 125px; animation: centerLogoFloating 3s infinite alternate ease-in-out; background: rgba(255,255,255,0.88); border-radius: 50%; padding: 15px; box-shadow: 0 0 35px rgba(59,130,246,0.6);">
     </div>
+</div>
 
-    <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="nav-logo-box">
-                    <img src="logo.png" class="h-10">
-                </div>
-                <h2 class="kelrio-blue text-2xl tracking-tighter">KELRIO</h2>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-bold uppercase">
-                <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
-                <a href="#portfolio" class="hover:text-blue-400 transition">Portfolio</a>
-                <a href="#team" class="hover:text-blue-400 transition">Team</a>
-                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
-            </div>
-        </div>
-    </nav>
+<!-- In animations ko CSS section me add karein -->
+<style>
+@keyframes centerLogoFloating {
+    from { transform: scale(0.95) rotate(-8deg); }
+    to { transform: scale(1.15) rotate(8deg); }
+}
+/* Circle text alignment fix for larger box */
+.circle-text span { transform-origin: 0 130px !important; }
+</style>  
+  
+/* ================= SKILL CARDS ================= */
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-32">
-        <div class="circle-box mb-12">
-            <div class="circle-text" id="circleText"></div>
-            <div class="center-logo">
-                <img src="logo.png" alt="Main K Logo">
-            </div>
-        </div>
-        <h1 class="hero-title mb-8">
-            KELRIO THE <br> DIGITAL STUDIO
-        </h1>
-        <p class="max-w-2xl text-gray-200 text-lg font-medium reveal" style="text-shadow:0 2px 15px rgba(0,0,0,0.9);">
-            Premium AI Solutions, Branding, Websites, Graphics and Professional Growth Systems.
-        </p>
-        <div class="mt-10 reveal">
-             <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full font-bold text-lg transition transform hover:scale-110 inline-block shadow-lg shadow-blue-500/30">
-                Get Started
-             </a>
-        </div>
-    </section>
+.skill-card{
+position:relative;
+padding:28px 22px;
+border-radius:20px;
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.07);
+backdrop-filter:blur(10px);
+overflow:hidden;
+transition:transform .4s cubic-bezier(.23,1,.32,1), border-color .4s, box-shadow .4s;
+cursor:default;
+}
 
-    <!-- SKILLS SECTION -->
-    <section id="skills" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black text-center mb-20 reveal">Expertise</h2>
-            <div class="grid grid-cols-2 lg:grid-cols-5 gap-6">
-                <!-- Skill Cards with intense animation -->
-                <div class="glass p-8 text-center card-anim reveal">
-                    <span class="skill-icon">🤖</span>
-                    <p class="font-bold mt-4">AI Apps</p>
-                </div>
-                <div class="glass p-8 text-center card-anim reveal">
-                    <span class="skill-icon">🎨</span>
-                    <p class="font-bold mt-4">Graphic Design</p>
-                </div>
-                <div class="glass p-8 text-center card-anim reveal">
-                    <span class="skill-icon">✦</span>
-                    <p class="font-bold mt-4">Logo Branding</p>
-                </div>
-                <div class="glass p-8 text-center card-anim reveal">
-                    <span class="skill-icon">💻</span>
-                    <p class="font-bold mt-4">Web Dev</p>
-                </div>
-                <div class="glass p-8 text-center card-anim reveal">
-                    <span class="skill-icon">💬</span>
-                    <p class="font-bold mt-4">AI Chatbots</p>
-                </div>
-            </div>
-        </div>
-    </section>
+.skill-card::before{
+content:'';
+position:absolute;
+top:-60%;
+left:-60%;
+width:220%;
+height:220%;
+background:radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 65%);
+opacity:0;
+transition:opacity .5s;
+}
 
-    <!-- PORTFOLIO SECTION -->
-    <section id="portfolio" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black text-center mb-20 reveal">Showcase</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Images are expected in your folder: p1.jpeg to p8.jpeg -->
-                <div class="portfolio-box glass reveal"><img src="p1.jpeg"></div>
-                <div class="portfolio-box glass reveal"><img src="p2.jpeg"></div>
-                <div class="portfolio-box glass reveal"><img src="p3.jpeg"></div>
-                <div class="portfolio-box glass reveal"><img src="p4.jpeg"></div>
-            </div>
-        </div>
-    </section>
+.skill-card:hover::before{
+opacity:1;
+}
 
-    <!-- TEAM SECTION -->
-    <section id="team" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-5xl font-black mb-20 reveal">Creative Minds</h2>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="glass p-10 card-anim reveal">
-                    <img src="team1.png" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 p-1">
-                    <h3 class="text-2xl font-bold">Kamran Akhter</h3>
-                    <p class="text-blue-400 font-bold uppercase text-xs tracking-widest mt-2">Founder & CEO</p>
-                </div>
-                <div class="glass p-10 card-anim reveal">
-                    <img src="team2.jpeg" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 p-1">
-                    <h3 class="text-2xl font-bold">Adeel Ahmed</h3>
-                    <p class="text-blue-400 font-bold uppercase text-xs tracking-widest mt-2">Creative Director</p>
-                </div>
-                <div class="glass p-10 card-anim reveal">
-                    <img src="team3.jpeg" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 p-1">
-                    <h3 class="text-2xl font-bold">Fateh Mohammad</h3>
-                    <p class="text-blue-400 font-bold uppercase text-xs tracking-widest mt-2">AI Specialist</p>
-                </div>
-            </div>
-        </div>
-    </section>
+.skill-card:hover{
+transform:translateY(-10px) scale(1.03);
+border-color:rgba(59,130,246,0.5);
+box-shadow:0 0 30px rgba(59,130,246,0.15), 0 20px 40px rgba(0,0,0,0.3);
+}
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-32 px-6">
-        <div class="max-w-4xl mx-auto glass p-12 reveal">
-            <h2 class="text-4xl font-black text-center mb-10">Launch Your Project</h2>
-            <form class="grid md:grid-cols-2 gap-8">
-                <input type="text" placeholder="Your Name" class="p-5 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 outline-none transition">
-                <input type="email" placeholder="Email Address" class="p-5 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 outline-none transition">
-                <textarea placeholder="Tell us about your project..." class="md:col-span-2 p-5 rounded-2xl bg-black/40 border border-white/10 focus:border-blue-500 outline-none h-40 transition"></textarea>
-                <button type="submit" class="md:col-span-2 bg-blue-600 p-5 rounded-2xl font-black text-xl hover:bg-blue-500 transform hover:scale-105 transition shadow-xl">
-                    Submit to Kelrio
-                </button>
-            </form>
-        </div>
-    </section>
+.skill-icon{
+font-size:26px;
+margin-bottom:12px;
+display:block;
+transition:transform .4s;
+}
 
-    <!-- MARQUEE HEADLINE -->
-    <div class="marquee">
-        <div class="marquee-track">
-            KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • 
-        </div>
-    </div>
+.skill-card:hover .skill-icon{
+transform:scale(1.25) rotate(-5deg);
+}
 
-    <!-- FOOTER -->
-    <footer class="py-20 text-center border-t border-white/5">
-        <div class="flex justify-center gap-10 mb-8 text-2xl">
-            <a href="https://wa.me/923123112586" target="_blank" class="text-green-500 hover:scale-125 transition"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:kamranakhterofficial@gmail.com" class="text-blue-400 hover:scale-125 transition"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p class="text-gray-500 font-medium">© 2026 Kelrio The Digital Studio. Built for Excellence.</p>
-    </footer>
+.skill-label{
+font-weight:700;
+font-size:15px;
+letter-spacing:0.5px;
+color:#e2e8f0;
+transition:color .3s;
+}
 
-    <!-- FIXED WHATSAPP -->
-    <a href="https://wa.me/923123112586" target="_blank" class="fixed right-8 bottom-8 bg-green-500 w-16 h-16 rounded-full flex justify-center items-center text-3xl shadow-2xl z-50 hover:scale-110 transition active:scale-95">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+.skill-card:hover .skill-label{
+color:#93c5fd;
+}
 
-    <script>
-        // Loader Logic
-        window.onload = function() {
-            setTimeout(() => { 
-                document.getElementById("welcome").style.opacity = "1"; 
-                document.getElementById("welcome").style.transform = "translateY(0)"; 
-            }, 800);
-            setTimeout(() => { document.getElementById("loader").style.opacity = "0"; }, 3000);
-            setTimeout(() => { document.getElementById("loader").style.display = "none"; }, 4000);
-        };
+.skill-line{
+width:0;
+height:2px;
+background:linear-gradient(90deg,#3b82f6,#60a5fa);
+border-radius:2px;
+margin-top:10px;
+transition:width .5s cubic-bezier(.23,1,.32,1);
+}
 
-        // Circle Text Generation
-        const txt = " KELRIO THE DIGITAL STUDIO • ";
-        const circle = document.getElementById("circleText");
-        for (let i = 0; i < txt.length; i++) {
-            let span = document.createElement("span");
-            span.innerText = txt[i];
-            span.style.transform = `rotate(${i * (360 / txt.length)}deg)`;
-            circle.appendChild(span);
-        }
+.skill-card:hover .skill-line{
+width:100%;
+}
 
-        // Reveal Animations on Scroll
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15 });
+/* ================= PORTFOLIO ================= */
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    </script>
+.portfolio{
+height:260px;
+border-radius:22px;
+overflow:hidden;
+position:relative;
+border:1px solid rgba(255,255,255,.08);
+transition:transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .4s;
+}
 
-</body>
-</html>
+.portfolio:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,130,246,0.4);
+border-color:rgba(59,130,246,0.4);
+}
+
+.portfolio img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .6s cubic-bezier(.23,1,.32,1), filter .5s;
+}
+
+.portfolio:hover img{
+transform:scale(1.1);
+filter:brightness(.45) saturate(1.2);
+}
+
+.portfolio-overlay{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+transition:opacity .4s;
+background:linear-gradient(135deg,rgba(59,130,246,0.25),rgba(0,0,0,0.3));
+}
+
+.portfolio:hover .portfolio-overlay{
+opacity:1;
+}
+
+.portfolio-overlay span{
+font-size:28px;
+color:#fff;
+transform:scale(0.6);
+transition:transform .4s cubic-bezier(.23,1,.32,1);
+}
+
+.portfolio:hover .portfolio-overlay span{
+transform:scale(1);
+}
+
+/* ================= TEAM ================= */
+
+.team-card{
+position:relative;
+overflow:hidden;
+transition:transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .4s;
+}
+
+.team-card::after{
+content:'';
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+height:3px;
+background:linear-gradient(90deg,#3b82f6,#60a5fa,#3b82f6);
+transform:scaleX(0);
+transition:transform .5s cubic-bezier(.23,1,.32,1);
+}
+
+.team-card:hover::after{
+transform:scaleX(1);
+}
+
+.team-card:hover{
+transform:translateY(-12px);
+box-shadow:0 25px 50px rgba(0,0,0,0.4), 0 0 30px rgba(59,130,246,0.1);
+border-color:rgba(59,130,246,0.3);
+}
+
+.team-card img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+margin:auto;
+margin-bottom:18px;
+border:2px solid #3b82f6;
+transition:transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .4s;
+}
+
+.team-card:hover img{
+transform:scale(1.08);
+box-shadow:0 0 0 4px rgba(59,130,246,0.3), 0 0 25px rgba(59,130,246,0.4);
+border-color:#93c5fd;
+}
+
+.team-name{
+font-weight:700;
+transition:color .4s, transform .4s;
+}
+
+.team-card:hover .team-name{
+color:#60a5fa;
+transform:translateY(-3px);
+}
+
+.team-role{
+font-size:12px;
+color:#64748b;
+letter-spacing:1px;
+margin-top:4px;
+text-transform:uppercase;
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:opacity .7s cubic-bezier(.23,1,.32,1), transform .7s cubic-bezier(.23,1,.32,1);
+}
+
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.reveal-left{
+opacity:0;
+transform:translateX(-40px);
+transition:opacity .7s cubic-bezier(.23,1,.32,1), transform .7s cubic-bezier(.23,1,.32,1);
+}
+
+.reveal-left.visible{
+opacity:1;
+transform:translateX(0);
+}  
+  
+/* ================= MARQUEE ================= */  
+  
+.marquee{  
+overflow:hidden;  
+white-space:nowrap;  
+padding:16px 0;  
+border-top:1px solid rgba(255,255,255,.08);  
+border-bottom:1px solid rgba(255,255,255,.08);  
+}  
+  
+.marquee-track{  
+display:inline-block;  
+animation:run 16s linear infinite;  
+font-weight:800;  
+letter-spacing:4px;  
+color:#60a5fa;  
+}  
+  
+@keyframes run{  
+0%{transform:translateX(0);}  
+100%{transform:translateX(-50%);}  
+}  
+  
+footer i{  
+margin-right:8px;  
+color:#60a5fa;  
+}  
+</style>  </head>  <body>  <!-- LOADER -->  <div id="loader">  
+<img src="logo.png">  
+<h1 id="welcome">WELCOME</h1>  
+</div>  <!-- BACKGROUND -->  <div class="bg-wrap">  
+<div class="bg"></div>  
+<div class="bg"></div>  
+<div class="bg"></div>  
+<div class="bg"></div>  
+</div>  <!-- NAV -->  <nav class="fixed top-0 w-full z-50 border-b border-white/10">  
+<div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">  <div class="flex items-center gap-3">  
+<img src="logo.png" class="h-12" style="background:rgba(255,255,255,0.92);border-radius:10px;padding:5px;box-shadow:0 0 14px rgba(255,255,255,0.35);">  
+<h2 class="font-black text-2xl">KELRIO</h2>  
+</div>  <div class="hidden md:flex gap-8 text-sm font-bold uppercase">  
+<a href="#skills">Skills</a>  
+<a href="#portfolio">Portfolio</a>  
+<a href="#team">Team</a>  
+<a href="#contact">Contact</a>  
+</div>  </div>  
+</nav>  <!-- HERO -->  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24">  <div class="circle-box mb-10">  
+<div class="circle-text" id="circleText"></div>  
+<div class="center-logo">  
+<img src="logo.png">  
+</div>  
+</div>  <h1 class="hero-title mb-6">  
+KELRIO THE <br> DIGITAL STUDIO  
+</h1>  <p class="max-w-2xl text-gray-200 text-lg" style="text-shadow:0 1px 10px rgba(0,0,0,0.8);letter-spacing:0.5px;font-weight:500;">  
+Premium AI Solutions, Branding, Websites, Graphics and Professional Growth Systems.  
+</p>  </section>  <!-- SKILLS -->  <section id="skills" class="py-28 px-6">  
+<div class="max-w-7xl mx-auto">  
+<h2 class="section-title reveal">10 Skills</h2>  <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+
+<div class="skill-card reveal" style="transition-delay:.05s">
+<span class="skill-icon">🤖</span>
+<div class="skill-label">AI App Building</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.1s">
+<span class="skill-icon">🎨</span>
+<div class="skill-label">Graphic Design</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.15s">
+<span class="skill-icon">✦</span>
+<div class="skill-label">Logo Branding</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.2s">
+<span class="skill-icon">💻</span>
+<div class="skill-label">Web Development</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.25s">
+<span class="skill-icon">💬</span>
+<div class="skill-label">AI Chatbots</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.3s">
+<span class="skill-icon">⚡</span>
+<div class="skill-label">Custom AI Agents</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.35s">
+<span class="skill-icon">🔄</span>
+<div class="skill-label">Automation</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.4s">
+<span class="skill-icon">🎬</span>
+<div class="skill-label">Video Editing</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.45s">
+<span class="skill-icon">📈</span>
+<div class="skill-label">Lead Generation</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.5s">
+<span class="skill-icon">🔍</span>
+<div class="skill-label">SEO Mastery</div>
+<div class="skill-line"></div>
+</div>
+
+</div>  
+</div>  
+</section>  <!-- PORTFOLIO -->  <section id="portfolio" class="py-28 px-6">  
+<div class="max-w-7xl mx-auto">  <h2 class="section-title reveal">Portfolio</h2>  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div class="portfolio reveal" style="transition-delay:.05s"><img src="p1.jpeg"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.1s"><img src="p2.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.15s"><img src="p3.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.2s"><img src="p4.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.25s"><img src="p5.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.3s"><img src="p6.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.35s"><img src="p7.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.4s"><img src="p8.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+
+</div>  
+</div>  
+</section>  <!-- TEAM -->  <section id="team" class="py-28 px-6">  
+<div class="max-w-7xl mx-auto">  <h2 class="section-title reveal">Our Team</h2>  <div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.05s">
+<img src="team1.png" loading="lazy">
+<h3 class="team-name">Kamran Akhter</h3>
+<p class="team-role">Founder & CEO</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.1s">
+<img src="team2.jpeg" loading="lazy">
+<h3 class="team-name">Adeel Ahmed</h3>
+<p class="team-role">Creative Director</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.15s">
+<img src="team3.jpeg" loading="lazy">
+<h3 class="team-name">Fateh Mohammad</h3>
+<p class="team-role">AI Specialist</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.2s">
+<img src="team4.jpeg" loading="lazy">
+<h3 class="team-name">Mohammad Jan</h3>
+<p class="team-role">Web Developer</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.25s">
+<img src="team5.jpeg" loading="lazy">
+<h3 class="team-name">Mohammad Nawaz</h3>
+<p class="team-role">Graphic Designer</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.3s">
+<img src="team6.png" loading="lazy">
+<h3 class="team-name">Mohammad Atif</h3>
+<p class="team-role">SEO & Growth</p>
+</div>
+
+</div>  
+</div>  
+</section>  <!-- ABOUT -->  <section class="py-28 px-6">  
+<div class="max-w-6xl mx-auto">  <h2 class="section-title">About Us</h2>  <div class="grid md:grid-cols-2 gap-8">  <div class="glass card">  
+<h3 class="text-2xl font-bold mb-4">Who We Are</h3>  
+<p class="text-gray-300 leading-8">  
+Kelrio The Digital Studio is a premium digital company providing  
+branding, websites, AI systems, graphics and business growth solutions worldwide.  
+</p>  
+</div>  <div class="glass card">  
+<h3 class="text-2xl font-bold mb-4">Why Choose Kelrio</h3>  
+<ul class="space-y-3 text-gray-300">  
+<li>✔ 24/7 Support</li>  
+<li>✔ Fast Delivery</li>  
+<li>✔ Premium Quality</li>  
+<li>✔ Trusted Team</li>  
+<li>✔ Modern AI Solutions</li>  
+<li>✔ Affordable Pricing</li>  
+</ul>  
+</div>  </div>  
+</div>  
+</section>  <!-- PEOPLE SAY -->  <section class="py-28 px-6">  
+<div class="max-w-6xl mx-auto">  <h2 class="section-title">What People Say</h2>  <div class="grid md:grid-cols-3 gap-8">  <div class="glass card">  
+⭐⭐⭐⭐⭐  
+<p class="mt-4 text-gray-300">  
+Amazing quality and professional team.  
+</p>  
+</div>  <div class="glass card">  
+⭐⭐⭐⭐⭐  
+<p class="mt-4 text-gray-300">  
+Fast delivery and premium results.  
+</p>  
+</div>  <div class="glass card">  
+⭐⭐⭐⭐⭐  
+<p class="mt-4 text-gray-300">  
+Highly trusted digital studio.  
+</p>  
+</div>  </div>  
+</div>  
+</section>  <!-- CONTACT -->  <section id="contact" class="py-28 px-6">  
+<div class="max-w-5xl mx-auto glass p-10">  <h2 class="section-title">Give Us Your Work</h2>  <div class="grid md:grid-cols-2 gap-6">  <input type="text" placeholder="Full Name" class="p-4 rounded-xl bg-black/30 border border-white/10">  
+<input type="email" placeholder="Email" class="p-4 rounded-xl bg-black/30 border border-white/10">  
+<input type="text" placeholder="Phone Number" class="p-4 rounded-xl bg-black/30 border border-white/10">  
+<input type="text" placeholder="Project Type" class="p-4 rounded-xl bg-black/30 border border-white/10">  <textarea rows="5" placeholder="Describe Project"  
+class="md:col-span-2 p-4 rounded-xl bg-black/30 border border-white/10"></textarea>  <button class="md:col-span-2 bg-blue-600 p-4 rounded-xl font-bold hover:bg-blue-700">  
+Submit Project  
+</button>  </div>  
+</div>  
+</section>  <!-- MOVING HEADLINE -->  <div class="marquee">  
+<div class="marquee-track">  
+KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO • KELRIO THE DIGITAL STUDIO •  
+</div>  
+</div>  <!-- FOOTER -->  <footer class="py-16 text-center">  <p class="mb-4">  
+<i class="fas fa-phone"></i> +92 330 8478347  
+</p>  <p class="mb-4">  
+<i class="fab fa-whatsapp"></i> +92 312 3112586  
+</p>  <p class="mb-4">  
+<i class="fas fa-envelope"></i> kamranakhterofficial@gmail.com  
+</p>  <p class="text-gray-500 text-sm mt-6">  
+© 2026 Kelrio The Digital Studio  
+</p>  </footer>  <!-- FLOAT WHATSAPP -->  <a href="https://wa.me/923123112586"  
+target="_blank"  
+class="fixed right-6 bottom-6 bg-green-500 w-16 h-16 rounded-full flex justify-center items-center text-3xl shadow-xl">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>  
+  
+/* LOADER */  
+window.onload=function(){  
+  
+setTimeout(()=>{  
+document.getElementById("welcome").style.opacity="1";  
+document.getElementById("welcome").style.transform="translateY(0)";  
+},1800);  
+  
+setTimeout(()=>{  
+document.getElementById("loader").style.opacity="0";  
+},3600);  
+  
+setTimeout(()=>{  
+document.getElementById("loader").style.display="none";  
+},4300);  
+  
+};  
+  
+/* CIRCLE TEXT */  
+let txt=" KELRIO THE DIGITAL STUDIO • ";  
+let circle=document.getElementById("circleText");  
+  
+for(let i=0;i<txt.length;i++){  
+let span=document.createElement("span");  
+span.innerText=txt[i];  
+span.style.transform="rotate("+(i*11)+"deg)";  
+circle.appendChild(span);  
+}
+
+/* SCROLL REVEAL */
+const revealEls = document.querySelectorAll('.reveal, .reveal-left');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));  
+  
+</script>  </body>  
+  </html>
