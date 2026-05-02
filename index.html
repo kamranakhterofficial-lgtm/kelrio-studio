@@ -74,37 +74,38 @@ overflow:hidden;
 position:absolute;  
 inset:0;  
 background-size:cover;  
-background-position:center;  
+background-position:center top;  
 opacity:0;  
 filter:blur(3px);  
 transform:scale(1.12);  
 animation:bgslide 28s infinite;  
+max-height:100vh;
 }  
   
 .bg:nth-child(1){  
 background-image:  
-linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),  
+linear-gradient(rgba(0,0,0,.88),rgba(0,0,0,.88)),  
 url('bg1.png');  
 animation-delay:0s;  
 }  
   
 .bg:nth-child(2){  
 background-image:  
-linear-gradient(rgba(0,20,40,.72),rgba(0,0,0,.72)),  
+linear-gradient(rgba(0,10,30,.88),rgba(0,0,0,.88)),  
 url('bg2.jpg');  
 animation-delay:7s;  
 }  
   
 .bg:nth-child(3){  
 background-image:  
-linear-gradient(rgba(10,0,45,.72),rgba(0,0,0,.72)),  
+linear-gradient(rgba(5,0,30,.88),rgba(0,0,0,.88)),  
 url('bg3.png');  
 animation-delay:14s;  
 }  
   
 .bg:nth-child(4){  
 background-image:  
-linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.72)),  
+linear-gradient(rgba(0,0,0,.90),rgba(0,0,0,.88)),  
 url('bg4.png');  
 animation-delay:21s;  
 }  
@@ -172,9 +173,10 @@ border-color:#3b82f6;
 font-size:75px;  
 font-weight:900;  
 line-height:1;  
-background:linear-gradient(180deg,#fff,#3b82f6);  
+background:linear-gradient(160deg,#ffffff 0%,#93c5fd 50%,#3b82f6 100%);  
 -webkit-background-clip:text;  
--webkit-text-fill-color:transparent;  
+-webkit-text-fill-color:transparent;
+filter:drop-shadow(0 2px 18px rgba(59,130,246,0.5));
 }  
   
 @media(max-width:768px){  
@@ -219,6 +221,10 @@ align-items:center;
 .center-logo img{  
 width:78px;  
 animation:centerLogo 2s infinite alternate;  
+background:rgba(255,255,255,0.92);
+border-radius:50%;
+padding:10px;
+box-shadow:0 0 22px rgba(59,130,246,0.6), 0 0 8px rgba(255,255,255,0.4);
 }  
   
 @keyframes spin{  
@@ -236,48 +242,220 @@ filter:drop-shadow(0 0 25px #3b82f6);
 }  
 }  
   
-/* ================= PORTFOLIO ================= */  
-  
-.portfolio{  
-height:260px;  
-border-radius:22px;  
-overflow:hidden;  
-position:relative;  
-border:1px solid rgba(255,255,255,.08);  
-}  
-  
-.portfolio img{  
-width:100%;  
-height:100%;  
-object-fit:cover;  
-transition:.5s;  
-}  
-  
-.portfolio:hover img{  
-transform:scale(1.1);  
-filter:brightness(.55);  
-}  
-  
-/* ================= TEAM ================= */  
-  
-.team-card img{  
-width:110px;  
-height:110px;  
-border-radius:50%;  
-object-fit:cover;  
-margin:auto;  
-margin-bottom:18px;  
-border:2px solid #3b82f6;  
-}  
-  
-.team-name{  
-font-weight:700;  
-transition:.4s;  
-}  
-  
-.team-card:hover .team-name{  
-color:#60a5fa;  
-transform:translateY(-5px);  
+/* ================= SKILL CARDS ================= */
+
+.skill-card{
+position:relative;
+padding:28px 22px;
+border-radius:20px;
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.07);
+backdrop-filter:blur(10px);
+overflow:hidden;
+transition:transform .4s cubic-bezier(.23,1,.32,1), border-color .4s, box-shadow .4s;
+cursor:default;
+}
+
+.skill-card::before{
+content:'';
+position:absolute;
+top:-60%;
+left:-60%;
+width:220%;
+height:220%;
+background:radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 65%);
+opacity:0;
+transition:opacity .5s;
+}
+
+.skill-card:hover::before{
+opacity:1;
+}
+
+.skill-card:hover{
+transform:translateY(-10px) scale(1.03);
+border-color:rgba(59,130,246,0.5);
+box-shadow:0 0 30px rgba(59,130,246,0.15), 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.skill-icon{
+font-size:26px;
+margin-bottom:12px;
+display:block;
+transition:transform .4s;
+}
+
+.skill-card:hover .skill-icon{
+transform:scale(1.25) rotate(-5deg);
+}
+
+.skill-label{
+font-weight:700;
+font-size:15px;
+letter-spacing:0.5px;
+color:#e2e8f0;
+transition:color .3s;
+}
+
+.skill-card:hover .skill-label{
+color:#93c5fd;
+}
+
+.skill-line{
+width:0;
+height:2px;
+background:linear-gradient(90deg,#3b82f6,#60a5fa);
+border-radius:2px;
+margin-top:10px;
+transition:width .5s cubic-bezier(.23,1,.32,1);
+}
+
+.skill-card:hover .skill-line{
+width:100%;
+}
+
+/* ================= PORTFOLIO ================= */
+
+.portfolio{
+height:260px;
+border-radius:22px;
+overflow:hidden;
+position:relative;
+border:1px solid rgba(255,255,255,.08);
+transition:transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .4s;
+}
+
+.portfolio:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,130,246,0.4);
+border-color:rgba(59,130,246,0.4);
+}
+
+.portfolio img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .6s cubic-bezier(.23,1,.32,1), filter .5s;
+}
+
+.portfolio:hover img{
+transform:scale(1.1);
+filter:brightness(.45) saturate(1.2);
+}
+
+.portfolio-overlay{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+transition:opacity .4s;
+background:linear-gradient(135deg,rgba(59,130,246,0.25),rgba(0,0,0,0.3));
+}
+
+.portfolio:hover .portfolio-overlay{
+opacity:1;
+}
+
+.portfolio-overlay span{
+font-size:28px;
+color:#fff;
+transform:scale(0.6);
+transition:transform .4s cubic-bezier(.23,1,.32,1);
+}
+
+.portfolio:hover .portfolio-overlay span{
+transform:scale(1);
+}
+
+/* ================= TEAM ================= */
+
+.team-card{
+position:relative;
+overflow:hidden;
+transition:transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .4s;
+}
+
+.team-card::after{
+content:'';
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+height:3px;
+background:linear-gradient(90deg,#3b82f6,#60a5fa,#3b82f6);
+transform:scaleX(0);
+transition:transform .5s cubic-bezier(.23,1,.32,1);
+}
+
+.team-card:hover::after{
+transform:scaleX(1);
+}
+
+.team-card:hover{
+transform:translateY(-12px);
+box-shadow:0 25px 50px rgba(0,0,0,0.4), 0 0 30px rgba(59,130,246,0.1);
+border-color:rgba(59,130,246,0.3);
+}
+
+.team-card img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+margin:auto;
+margin-bottom:18px;
+border:2px solid #3b82f6;
+transition:transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s, border-color .4s;
+}
+
+.team-card:hover img{
+transform:scale(1.08);
+box-shadow:0 0 0 4px rgba(59,130,246,0.3), 0 0 25px rgba(59,130,246,0.4);
+border-color:#93c5fd;
+}
+
+.team-name{
+font-weight:700;
+transition:color .4s, transform .4s;
+}
+
+.team-card:hover .team-name{
+color:#60a5fa;
+transform:translateY(-3px);
+}
+
+.team-role{
+font-size:12px;
+color:#64748b;
+letter-spacing:1px;
+margin-top:4px;
+text-transform:uppercase;
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:opacity .7s cubic-bezier(.23,1,.32,1), transform .7s cubic-bezier(.23,1,.32,1);
+}
+
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.reveal-left{
+opacity:0;
+transform:translateX(-40px);
+transition:opacity .7s cubic-bezier(.23,1,.32,1), transform .7s cubic-bezier(.23,1,.32,1);
+}
+
+.reveal-left.visible{
+opacity:1;
+transform:translateX(0);
 }  
   
 /* ================= MARQUEE ================= */  
@@ -317,7 +495,7 @@ color:#60a5fa;
 <div class="bg"></div>  
 </div>  <!-- NAV -->  <nav class="fixed top-0 w-full z-50 border-b border-white/10">  
 <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">  <div class="flex items-center gap-3">  
-<img src="logo.png" class="h-12">  
+<img src="logo.png" class="h-12" style="background:rgba(255,255,255,0.92);border-radius:10px;padding:5px;box-shadow:0 0 14px rgba(255,255,255,0.35);">  
 <h2 class="font-black text-2xl">KELRIO</h2>  
 </div>  <div class="hidden md:flex gap-8 text-sm font-bold uppercase">  
 <a href="#skills">Skills</a>  
@@ -332,51 +510,128 @@ color:#60a5fa;
 </div>  
 </div>  <h1 class="hero-title mb-6">  
 KELRIO THE <br> DIGITAL STUDIO  
-</h1>  <p class="max-w-2xl text-gray-300 text-lg">  
+</h1>  <p class="max-w-2xl text-gray-200 text-lg" style="text-shadow:0 1px 10px rgba(0,0,0,0.8);letter-spacing:0.5px;font-weight:500;">  
 Premium AI Solutions, Branding, Websites, Graphics and Professional Growth Systems.  
 </p>  </section>  <!-- SKILLS -->  <section id="skills" class="py-28 px-6">  
 <div class="max-w-7xl mx-auto">  
-<h2 class="section-title">10 Skills</h2>  <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">  <div class="glass card">AI App Building</div>  
-<div class="glass card">Graphic Design</div>  
-<div class="glass card">Logo Branding</div>  
-<div class="glass card">Web Development</div>  
-<div class="glass card">AI Chatbots</div>  
-<div class="glass card">Custom AI Agents</div>  
-<div class="glass card">Automation</div>  
-<div class="glass card">Video Editing</div>  
-<div class="glass card">Lead Generation</div>  
-<div class="glass card">SEO Mastery</div>  </div>  
+<h2 class="section-title reveal">10 Skills</h2>  <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+
+<div class="skill-card reveal" style="transition-delay:.05s">
+<span class="skill-icon">🤖</span>
+<div class="skill-label">AI App Building</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.1s">
+<span class="skill-icon">🎨</span>
+<div class="skill-label">Graphic Design</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.15s">
+<span class="skill-icon">✦</span>
+<div class="skill-label">Logo Branding</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.2s">
+<span class="skill-icon">💻</span>
+<div class="skill-label">Web Development</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.25s">
+<span class="skill-icon">💬</span>
+<div class="skill-label">AI Chatbots</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.3s">
+<span class="skill-icon">⚡</span>
+<div class="skill-label">Custom AI Agents</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.35s">
+<span class="skill-icon">🔄</span>
+<div class="skill-label">Automation</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.4s">
+<span class="skill-icon">🎬</span>
+<div class="skill-label">Video Editing</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.45s">
+<span class="skill-icon">📈</span>
+<div class="skill-label">Lead Generation</div>
+<div class="skill-line"></div>
+</div>
+
+<div class="skill-card reveal" style="transition-delay:.5s">
+<span class="skill-icon">🔍</span>
+<div class="skill-label">SEO Mastery</div>
+<div class="skill-line"></div>
+</div>
+
+</div>  
 </div>  
 </section>  <!-- PORTFOLIO -->  <section id="portfolio" class="py-28 px-6">  
-<div class="max-w-7xl mx-auto">  <h2 class="section-title">Portfolio</h2>  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">  <div class="portfolio"><img src="p1.jpeg"></div>  
-<div class="portfolio"><img src="p2.jpeg" loading="lazy"></div>  
-<div class="portfolio"><img src="p3.jpeg" loading="lazy"></div>  
-<div class="portfolio"><img src="p4.jpeg" loading="lazy"></div>  
-<div class="portfolio"><img src="p5.jpeg" loading="lazy"></div>  
-<div class="portfolio"><img src="p6.jpeg" loading="lazy"></div>  
-<div class="portfolio"><img src="p7.jpeg" loading="lazy"></div>  
-<div class="portfolio"><img src="p8.jpeg" loading="lazy"></div>  </div>  
+<div class="max-w-7xl mx-auto">  <h2 class="section-title reveal">Portfolio</h2>  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div class="portfolio reveal" style="transition-delay:.05s"><img src="p1.jpeg"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.1s"><img src="p2.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.15s"><img src="p3.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.2s"><img src="p4.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.25s"><img src="p5.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.3s"><img src="p6.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.35s"><img src="p7.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+<div class="portfolio reveal" style="transition-delay:.4s"><img src="p8.jpeg" loading="lazy"><div class="portfolio-overlay"><span>✦</span></div></div>
+
+</div>  
 </div>  
 </section>  <!-- TEAM -->  <section id="team" class="py-28 px-6">  
-<div class="max-w-7xl mx-auto">  <h2 class="section-title">Our Team</h2>  <div class="grid md:grid-cols-3 gap-8">  <div class="glass card team-card text-center">  
-<img src="team1.png" loading="lazy">  
-<h3 class="team-name">Kamran Akhter</h3>  
-</div>  <div class="glass card team-card text-center">  
-<img src="team2.jpeg" loading="lazy">  
-<h3 class="team-name">Adeel Ahmed</h3>  
-</div>  <div class="glass card team-card text-center">  
-<img src="team3.jpeg" loading="lazy">  
-<h3 class="team-name">Fateh Mohammad</h3>  
-</div>  <div class="glass card team-card text-center">  
-<img src="team4.jpeg" loading="lazy">  
-<h3 class="team-name">Mohammad Jan</h3>  
-</div>  <div class="glass card team-card text-center">  
-<img src="team5.jpeg" loading="lazy">  
-<h3 class="team-name">Mohammad Nawaz</h3>  
-</div>  <div class="glass card team-card text-center">  
-<img src="team6.png" loading="lazy">  
-<h3 class="team-name">Mohammad Atif</h3>  
-</div>  </div>  
+<div class="max-w-7xl mx-auto">  <h2 class="section-title reveal">Our Team</h2>  <div class="grid md:grid-cols-3 gap-8">
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.05s">
+<img src="team1.png" loading="lazy">
+<h3 class="team-name">Kamran Akhter</h3>
+<p class="team-role">Founder & CEO</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.1s">
+<img src="team2.jpeg" loading="lazy">
+<h3 class="team-name">Adeel Ahmed</h3>
+<p class="team-role">Creative Director</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.15s">
+<img src="team3.jpeg" loading="lazy">
+<h3 class="team-name">Fateh Mohammad</h3>
+<p class="team-role">AI Specialist</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.2s">
+<img src="team4.jpeg" loading="lazy">
+<h3 class="team-name">Mohammad Jan</h3>
+<p class="team-role">Web Developer</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.25s">
+<img src="team5.jpeg" loading="lazy">
+<h3 class="team-name">Mohammad Nawaz</h3>
+<p class="team-role">Graphic Designer</p>
+</div>
+
+<div class="glass card team-card text-center reveal" style="transition-delay:.3s">
+<img src="team6.png" loading="lazy">
+<h3 class="team-name">Mohammad Atif</h3>
+<p class="team-role">SEO & Growth</p>
+</div>
+
+</div>  
 </div>  
 </section>  <!-- ABOUT -->  <section class="py-28 px-6">  
 <div class="max-w-6xl mx-auto">  <h2 class="section-title">About Us</h2>  <div class="grid md:grid-cols-2 gap-8">  <div class="glass card">  
@@ -471,7 +726,16 @@ let span=document.createElement("span");
 span.innerText=txt[i];  
 span.style.transform="rotate("+(i*11)+"deg)";  
 circle.appendChild(span);  
-}  
+}
+
+/* SCROLL REVEAL */
+const revealEls = document.querySelectorAll('.reveal, .reveal-left');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));  
   
 </script>  </body>  
   </html>
