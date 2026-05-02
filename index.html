@@ -138,13 +138,9 @@ opacity:0;
   
 /* ================= NAV ================= */  
   
-nav {
-    /* Background thora dark kiya hai taake content saaf nazar aaye */
-    background: rgba(0, 0, 0, 0.6); 
-    /* Blur effect ko mazeed badha diya hai premium look ke liye */
-    backdrop-filter: blur(15px); 
-    /* Neeche ek halki line add ki hai jo boundaries ko clear karegi */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+nav{  
+background:rgba(0,0,0,.45);  
+backdrop-filter:blur(12px);  
 }  
   
 /* ================= COMMON ================= */  
@@ -242,26 +238,7 @@ filter:drop-shadow(0 0 0px #3b82f6);
 }  
 to{  
 transform:scale(1.12) rotate(8deg);  
-filter:drop-shadow(0 0 25px #3b82f6); 
-  <div class="circle-box" style="position: relative; width: 260px; height: 260px; margin: auto; margin-bottom: 3rem;">
-    <!-- Rotating Text -->
-    <div class="circle-text" id="circleText" style="position: absolute; inset: 0; animation: spin 12s linear infinite;"></div>
-    
-    <!-- Large Center Logo -->
-    <div class="center-logo" style="position: absolute; inset: 0; display: flex; justify-content: center; align-items: center;">
-        <img src="logo.png" style="width: 125px; animation: centerLogoFloating 3s infinite alternate ease-in-out; background: rgba(255,255,255,0.88); border-radius: 50%; padding: 15px; box-shadow: 0 0 35px rgba(59,130,246,0.6);">
-    </div>
-</div>
-
-<!-- In animations ko CSS section me add karein -->
-<style>
-@keyframes centerLogoFloating {
-    from { transform: scale(0.95) rotate(-8deg); }
-    to { transform: scale(1.15) rotate(8deg); }
-}
-/* Circle text alignment fix for larger box */
-.circle-text span { transform-origin: 0 130px !important; }
-</style>
+filter:drop-shadow(0 0 25px #3b82f6);  
 }  
 }  
   
