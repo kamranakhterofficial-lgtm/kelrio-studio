@@ -138,23 +138,14 @@ opacity:0;
   
 /* ================= NAV ================= */  
   
-<div class="flex items-center gap-4">
-    <!-- Animated Logo Box -->
-    <div style="background: rgba(255,255,255,0.85); border-radius: 12px; padding: 6px; box-shadow: 0 0 15px rgba(59,130,246,0.3); animation: navLogoSpin 4s infinite linear;">
-        <img src="logo.png" class="h-10">
-    </div>
-    <!-- Dark Blue Text -->
-    <h2 style="color: #1e3a8a; font-weight: 900; font-size: 1.5rem; letter-spacing: -0.5px;">KELRIO</h2>
-</div>
-
-<!-- Is animation ko CSS section me add karein -->
-<style>
-@keyframes navLogoSpin {
-    0% { transform: perspective(500px) rotateY(0deg); }
-    50% { transform: perspective(500px) rotateY(180deg); }
-    100% { transform: perspective(500px) rotateY(360deg); }
-}
-</style> 
+nav {
+    /* Background thora dark kiya hai taake content saaf nazar aaye */
+    background: rgba(0, 0, 0, 0.6); 
+    /* Blur effect ko mazeed badha diya hai premium look ke liye */
+    backdrop-filter: blur(15px); 
+    /* Neeche ek halki line add ki hai jo boundaries ko clear karegi */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}  
   
 /* ================= COMMON ================= */  
   
@@ -199,7 +190,60 @@ filter:drop-shadow(0 2px 18px rgba(59,130,246,0.5));
   
 /* ================= CIRCLE ================= */  
   
-<div class="circle-box" style="position: relative; width: 260px; height: 260px; margin: auto; margin-bottom: 3rem;">
+.circle-box{  
+position:relative;  
+width:210px;  
+height:210px;  
+margin:auto;  
+}  
+  
+.circle-text{  
+position:absolute;  
+inset:0;  
+animation:spin 12s linear infinite;  
+}  
+  
+.circle-text span{  
+position:absolute;  
+left:50%;  
+top:0;  
+transform-origin:0 105px;  
+font-size:12px;  
+font-weight:700;  
+letter-spacing:2px;  
+color:#60a5fa;  
+}  
+  
+.center-logo{  
+position:absolute;  
+inset:0;  
+display:flex;  
+justify-content:center;  
+align-items:center;  
+}  
+  
+.center-logo img{  
+width:78px;  
+animation:centerLogo 2s infinite alternate;  
+background:rgba(255,255,255,0.92);
+border-radius:50%;
+padding:10px;
+box-shadow:0 0 22px rgba(59,130,246,0.6), 0 0 8px rgba(255,255,255,0.4);
+}  
+  
+@keyframes spin{  
+100%{transform:rotate(360deg);}  
+}  
+  
+@keyframes centerLogo{  
+from{  
+transform:scale(.95) rotate(-8deg);  
+filter:drop-shadow(0 0 0px #3b82f6);  
+}  
+to{  
+transform:scale(1.12) rotate(8deg);  
+filter:drop-shadow(0 0 25px #3b82f6); 
+  <div class="circle-box" style="position: relative; width: 260px; height: 260px; margin: auto; margin-bottom: 3rem;">
     <!-- Rotating Text -->
     <div class="circle-text" id="circleText" style="position: absolute; inset: 0; animation: spin 12s linear infinite;"></div>
     
@@ -217,7 +261,9 @@ filter:drop-shadow(0 2px 18px rgba(59,130,246,0.5));
 }
 /* Circle text alignment fix for larger box */
 .circle-text span { transform-origin: 0 130px !important; }
-</style>  
+</style>
+}  
+}  
   
 /* ================= SKILL CARDS ================= */
 
